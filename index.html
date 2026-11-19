@@ -1,0 +1,2850 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ECONO CALC PRO // Suite Lengkap Ekonomi SMA, Tabel Akuntansi, Neraca & Kurva</title>
+    <style>
+        :root {
+            --bg-base: #070c17;
+            --bg-surface: rgba(15, 25, 44, 0.92);
+            --bg-card: rgba(20, 34, 58, 0.78);
+            --bg-elevated: #1b2e4d;
+            --bg-inset: #09101f;
+            --glow-1: rgba(20, 184, 166, 0.18);
+            --glow-2: rgba(99, 102, 241, 0.18);
+            --glow-3: rgba(245, 158, 11, 0.10);
+            --border-subtle: rgba(148, 163, 184, 0.18);
+            --border-strong: rgba(45, 212, 191, 0.55);
+            --accent-1: #2dd4bf;
+            --accent-1-soft: rgba(45, 212, 191, 0.15);
+            --accent-2: #818cf8;
+            --accent-2-soft: rgba(129, 140, 248, 0.16);
+            --accent-3: #fbbf24;
+            --accent-3-soft: rgba(251, 191, 36, 0.16);
+            --danger: #fb7185;
+            --danger-soft: rgba(251, 113, 133, 0.16);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --radius-xl: 22px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 9px;
+        }
+
+        body[data-theme="aurora"] {
+            --bg-base: #13091a;
+            --bg-surface: rgba(31, 15, 42, 0.92);
+            --bg-card: rgba(42, 20, 56, 0.8);
+            --bg-elevated: #361a4a;
+            --bg-inset: #100717;
+            --glow-1: rgba(244, 114, 182, 0.22);
+            --glow-2: rgba(251, 146, 60, 0.18);
+            --border-subtle: rgba(244, 114, 182, 0.22);
+            --border-strong: rgba(251, 113, 133, 0.58);
+            --accent-1: #fb7185;
+            --accent-1-soft: rgba(251, 113, 133, 0.16);
+            --accent-2: #f59e0b;
+            --accent-2-soft: rgba(245, 158, 11, 0.16);
+            --accent-3: #38bdf8;
+            --accent-3-soft: rgba(56, 189, 248, 0.16);
+        }
+
+        body[data-theme="amber"] {
+            --bg-base: #120e07;
+            --bg-surface: rgba(29, 23, 12, 0.93);
+            --bg-card: rgba(39, 31, 16, 0.82);
+            --bg-elevated: #382c14;
+            --bg-inset: #0d0a05;
+            --glow-1: rgba(250, 204, 21, 0.2);
+            --glow-2: rgba(163, 230, 53, 0.15);
+            --border-subtle: rgba(251, 191, 36, 0.22);
+            --border-strong: rgba(250, 204, 21, 0.58);
+            --accent-1: #facc15;
+            --accent-1-soft: rgba(250, 204, 21, 0.15);
+            --accent-2: #a3e635;
+            --accent-2-soft: rgba(163, 230, 53, 0.15);
+            --accent-3: #22d3ee;
+            --accent-3-soft: rgba(34, 211, 238, 0.15);
+        }
+
+        body[data-theme="indigo"] {
+            --bg-base: #070c20;
+            --bg-surface: rgba(15, 23, 52, 0.93);
+            --bg-card: rgba(21, 32, 70, 0.82);
+            --bg-elevated: #203270;
+            --bg-inset: #060a19;
+            --glow-1: rgba(96, 165, 250, 0.22);
+            --glow-2: rgba(192, 132, 252, 0.18);
+            --border-subtle: rgba(129, 140, 248, 0.22);
+            --border-strong: rgba(96, 165, 250, 0.58);
+            --accent-1: #60a5fa;
+            --accent-1-soft: rgba(96, 165, 250, 0.16);
+            --accent-2: #c084fc;
+            --accent-2-soft: rgba(192, 132, 252, 0.16);
+            --accent-3: #34d399;
+            --accent-3-soft: rgba(52, 211, 153, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes fadeUpIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            background:
+                radial-gradient(ellipse 80% 42% at 8% 0%, var(--glow-1), transparent 62%),
+                radial-gradient(ellipse 75% 42% at 92% 2%, var(--glow-2), transparent 60%),
+                radial-gradient(ellipse 60% 35% at 50% 100%, var(--glow-3), transparent 65%),
+                linear-gradient(180deg, var(--bg-base) 0%, #04070e 100%);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            padding: 16px;
+            line-height: 1.55;
+            font-variant-numeric: tabular-nums;
+            overflow-x: hidden;
+            transition: background 0.3s ease;
+        }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 18px;
+            box-shadow: 0 20px 42px -26px rgba(0, 0, 0, 0.88);
+            animation: fadeUpIn 0.25s ease both;
+            transition: border-color 0.2s ease, background 0.25s ease;
+        }
+
+        .panel-featured {
+            border-color: var(--border-strong);
+            background: linear-gradient(125deg, var(--accent-1-soft), var(--bg-surface) 48%, var(--accent-2-soft));
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: #050911;
+            font-weight: 900;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 24px -10px var(--accent-1);
+            flex-shrink: 0;
+        }
+
+        .brand-title {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .brand-title span {
+            color: var(--accent-1);
+        }
+
+        .edu-pill {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 2px 9px;
+            border-radius: 999px;
+            background: var(--accent-1-soft);
+            color: var(--accent-1);
+            border: 1px solid var(--border-subtle);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .brand-sub {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .theme-select {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 9px 12px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        button,
+        a.btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 9px 13px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            transition: transform 0.14s ease, border-color 0.16s ease, background 0.16s ease, filter 0.16s ease;
+            white-space: nowrap;
+        }
+
+        button:hover,
+        a.btn-action:hover {
+            filter: brightness(1.1);
+            border-color: var(--accent-1);
+            transform: translateY(-1px);
+        }
+
+        button:active,
+        a.btn-action:active {
+            transform: scale(0.97);
+        }
+
+        button.btn-accent2 {
+            background: var(--accent-2-soft);
+            border-color: var(--accent-2);
+            color: var(--text-primary);
+        }
+
+        button.btn-accent3 {
+            background: var(--accent-3-soft);
+            border-color: var(--accent-3);
+            color: var(--accent-3);
+        }
+
+        button.btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border: none;
+            color: #050911;
+            font-size: 13px;
+            font-weight: 900;
+            padding: 12px 18px;
+            box-shadow: 0 10px 24px -10px var(--accent-1);
+        }
+
+        a.btn-wa {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-color: rgba(110, 231, 183, 0.45);
+            color: #02140c;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .filter-groups {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .segmented {
+            display: inline-flex;
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            padding: 4px;
+            border-radius: 14px;
+            gap: 4px;
+        }
+
+        .seg-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            padding: 7px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+        }
+
+        .seg-btn.active-1 {
+            background: var(--accent-1);
+            color: #050911;
+        }
+
+        .seg-btn.active-2 {
+            background: var(--accent-2);
+            color: #050911;
+        }
+
+        .search-wrap {
+            position: relative;
+            flex: 1;
+            min-width: 240px;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 10px 14px;
+            color: var(--text-primary);
+            font-size: 13px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            box-shadow: 0 0 0 3px var(--accent-1-soft);
+        }
+
+        /* Chapter Grid */
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+            gap: 12px;
+        }
+
+        .chapter-card {
+            text-align: left;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 15px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+            white-space: normal;
+            animation: fadeUpIn 0.25s ease both;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-2);
+        }
+
+        .chapter-card.active {
+            border-color: var(--accent-1);
+            background: linear-gradient(155deg, var(--accent-1-soft), var(--bg-surface) 75%);
+        }
+
+        .chapter-kicker {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: var(--accent-1);
+            text-transform: uppercase;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .chapter-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.35;
+        }
+
+        .chapter-meta {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Active Chapter Banner */
+        .active-header-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .active-title {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.015em;
+            margin-top: 3px;
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background: var(--accent-1-soft);
+            color: var(--accent-1);
+            border: 1px solid var(--border-strong);
+        }
+
+        .status-badge.warn {
+            background: var(--danger-soft);
+            color: var(--danger);
+            border-color: rgba(251, 113, 133, 0.45);
+        }
+
+        .formula-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .f-tab {
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 11px;
+            font-size: 12px;
+        }
+
+        .f-tab.active {
+            background: var(--accent-1);
+            border-color: var(--accent-1);
+            color: #050911;
+        }
+
+        /* Main Workspace */
+        .workspace {
+            display: grid;
+            grid-template-columns: 1fr 1.32fr;
+            gap: 16px;
+            align-items: start;
+        }
+
+        @media (max-width: 980px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-heading {
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .formula-box {
+            background: var(--bg-inset);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            padding: 15px;
+            margin-bottom: 16px;
+            animation: fadeUpIn 0.25s ease both;
+        }
+
+        .formula-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-1);
+        }
+
+        .formula-eq {
+            font-family: 'Cambria Math', 'Times New Roman', Georgia, serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-3);
+            margin: 10px 0;
+            padding: 11px 13px;
+            background: var(--accent-3-soft);
+            border-left: 3.5px solid var(--accent-3);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .legend-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 11px 13px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .legend-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-2);
+            margin-bottom: 5px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 7px;
+            margin-top: 6px;
+        }
+
+        .sym-chip {
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            border-radius: 9px;
+            padding: 7px 10px;
+            font-size: 11.5px;
+            line-height: 1.4;
+        }
+
+        .sym-token {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-weight: 800;
+            color: var(--accent-1);
+            background: var(--accent-1-soft);
+            padding: 1px 6px;
+            border-radius: 5px;
+            margin-right: 4px;
+        }
+
+        .sym-name {
+            font-weight: 800;
+            color: var(--accent-3);
+        }
+
+        .sym-desc {
+            display: block;
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .input-section-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-1);
+            margin: 12px 0 6px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .inputs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 9px 12px;
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            box-shadow: 0 0 0 3px var(--accent-1-soft);
+        }
+
+        .action-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        /* Result, KPI & Steps */
+        .result-hero {
+            background: linear-gradient(135deg, var(--accent-1-soft), var(--accent-2-soft));
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            margin-bottom: 14px;
+            animation: fadeUpIn 0.25s ease both;
+        }
+
+        .result-kicker {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent-1);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .result-value {
+            font-size: 21px;
+            font-weight: 900;
+            color: var(--accent-3);
+            margin: 5px 0;
+            line-height: 1.25;
+        }
+
+        .result-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .kpi-card {
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 11px 12px;
+        }
+
+        .kpi-label {
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            font-weight: 800;
+        }
+
+        .kpi-val {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-top: 3px;
+        }
+
+        /* Table Panel */
+        .table-panel {
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12.5px;
+        }
+
+        table.data-table th {
+            background: var(--bg-elevated);
+            color: var(--accent-1);
+            font-weight: 800;
+            text-align: left;
+            padding: 9px 11px;
+            border-bottom: 1px solid var(--border-subtle);
+            white-space: nowrap;
+        }
+
+        table.data-table td {
+            padding: 8px 11px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            color: var(--text-secondary);
+        }
+
+        table.data-table tr.row-section td {
+            background: rgba(129, 140, 248, 0.1);
+            color: var(--accent-3);
+            font-weight: 800;
+        }
+
+        table.data-table tr.row-total td {
+            background: var(--accent-1-soft);
+            color: #ffffff;
+            font-weight: 900;
+            border-top: 1.5px solid var(--border-strong);
+        }
+
+        .num-col {
+            text-align: right !important;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .steps-panel {
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 15px;
+            margin-bottom: 14px;
+        }
+
+        .step-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 11px 13px;
+            margin-bottom: 10px;
+            animation: fadeUpIn 0.25s ease both;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            background: var(--accent-1-soft);
+            color: var(--accent-1);
+            font-size: 11px;
+            font-weight: 900;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .step-heading {
+            font-size: 12px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .step-flow {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .step-formula-apply {
+            font-family: 'Cambria Math', 'Times New Roman', Georgia, serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-3);
+            margin: 7px 0;
+            padding: 8px 11px;
+            background: var(--bg-inset);
+            border-left: 2.5px solid var(--accent-1);
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .step-explain {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+
+        /* Chart Panel */
+        .chart-panel {
+            background: var(--bg-inset);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+        }
+
+        .chart-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .chart-title {
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        canvas#vizCanvas {
+            width: 100%;
+            height: 240px;
+            display: block;
+            border-radius: var(--radius-md);
+            background: #040812;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .chart-note {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 11px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .footer-brand {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .footer-brand strong {
+            color: var(--accent-1);
+        }
+
+        .footer-note {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* PID Drawing Overlay & Floating Controls */
+        #pidCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        #pidBar {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 55;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 16px;
+            background: rgba(9, 15, 28, 0.96);
+            border: 1px solid var(--accent-3);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.78);
+        }
+
+        .swatch {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .swatch.active {
+            border-color: #ffffff;
+            transform: scale(1.12);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 14, 0.85);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 60;
+        }
+
+        .modal-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-xl);
+            padding: 22px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: fadeUpIn 0.25s ease both;
+        }
+    </style>
+</head>
+<body data-theme="cyber">
+    <canvas id="pidCanvas" class="hidden"></canvas>
+
+    <div id="pidBar" class="hidden">
+        <span style="font-size:11.5px;font-weight:800;color:var(--accent-3);">✏️ MODE CORET PID</span>
+        <button class="swatch active" style="background:#fbbf24;" onclick="setPenColor('#fbbf24', this)" title="Kuning"></button>
+        <button class="swatch" style="background:#2dd4bf;" onclick="setPenColor('#2dd4bf', this)" title="Teal"></button>
+        <button class="swatch" style="background:#fb7185;" onclick="setPenColor('#fb7185', this)" title="Rose"></button>
+        <button class="swatch" style="background:#38bdf8;" onclick="setPenColor('#38bdf8', this)" title="Sky"></button>
+        <button onclick="undoStroke()" style="padding:6px 10px;font-size:11px;">↩ UNDO</button>
+        <button onclick="clearPIDStrokes()" style="padding:6px 10px;font-size:11px;">🗑️ HAPUS</button>
+        <button class="btn-primary" onclick="exitPID()" style="padding:7px 12px;font-size:11px;">✓ MODE NORMAL</button>
+    </div>
+
+    <div class="container">
+        <header class="panel header">
+            <div class="brand">
+                <div class="logo-badge">∑E</div>
+                <div>
+                    <div class="brand-title">
+                        ECONO <span>CALC PRO</span>
+                        <span class="edu-pill">KURIKULUM SMA • FULL SUITE</span>
+                    </div>
+                    <div class="brand-sub">Rumus & Kamus Simbol • Neraca Lengkap • Tabel Akuntansi & Ekonomi • Kurva Dinamis</div>
+                </div>
+            </div>
+            <div class="toolbar">
+                <select class="theme-select" id="themeSelect" onchange="setTheme(this.value)" title="Pilih Gaya & Warna">
+                    <option value="cyber">🎨 Gaya: Teal Indigo</option>
+                    <option value="aurora">🎨 Gaya: Sunset Aurora</option>
+                    <option value="amber">🎨 Gaya: Amber Lime</option>
+                    <option value="indigo">🎨 Gaya: Royal Violet</option>
+                </select>
+                <a class="btn-action btn-wa" href="https://wa.me/6282371729760?text=Halo%20Zeeo%20(Vektor%20Zero%20-%20Dev)%2C%20saya%20ingin%20bertanya%20terkait%20ECONO%20CALC%20PRO." target="_blank" rel="noopener noreferrer">💬 WA 0823-7172-9760</a>
+                <button class="btn-accent2" onclick="openQR()">📱 QR HP</button>
+                <button class="btn-accent3" id="btnDraw" onclick="enterPID()">✏️ CORET PID</button>
+                <button onclick="toggleFull()">⛶ FULLSCREEN</button>
+            </div>
+        </header>
+
+        <section class="panel filter-bar">
+            <div class="filter-groups">
+                <div class="segmented" role="group" aria-label="Pilih Kelas">
+                    <button class="seg-btn active-1" id="btnClsX" onclick="setClass('X')">KELAS X</button>
+                    <button class="seg-btn" id="btnClsXI" onclick="setClass('XI')">KELAS XI</button>
+                    <button class="seg-btn" id="btnClsXII" onclick="setClass('XII')">KELAS XII</button>
+                </div>
+                <div class="segmented" role="group" aria-label="Pilih Semester">
+                    <button class="seg-btn active-2" id="btnSem1" onclick="setSem(1)">SEMESTER 1</button>
+                    <button class="seg-btn" id="btnSem2" onclick="setSem(2)">SEMESTER 2</button>
+                </div>
+            </div>
+            <div class="search-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari bab, rumus, neraca, jurnal, HPP, elastisitas, PDB, BEP..." oninput="handleSearch()">
+            </div>
+        </section>
+
+        <section id="chapGrid" class="chapter-grid"></section>
+
+        <section class="panel panel-featured">
+            <div class="active-header-row">
+                <div>
+                    <div class="chapter-kicker" id="curBadge"></div>
+                    <h2 class="active-title" id="curTitle"></h2>
+                </div>
+                <div class="status-badge" id="statusBadge">AKTIF</div>
+            </div>
+            <div id="formulaTabs" class="formula-tabs"></div>
+        </section>
+
+        <main class="workspace">
+            <div class="panel">
+                <div class="section-heading">Rumus, Kamus Tanda & Input Parameter</div>
+                <div class="formula-box">
+                    <div class="formula-tag" id="fName">RUMUS</div>
+                    <div class="formula-eq" id="fMath"></div>
+
+                    <div class="legend-card">
+                        <div class="legend-title">Makna Konsep & Variabel</div>
+                        <div id="fLegend"></div>
+                    </div>
+
+                    <div class="legend-card" style="margin-bottom:0;">
+                        <div class="legend-title">Kamus Nama Tanda & Simbol Rumus Ini</div>
+                        <div id="fSymbols" class="symbols-grid"></div>
+                    </div>
+                </div>
+
+                <div id="inputsContainer"></div>
+
+                <div class="action-row">
+                    <button class="btn-primary" style="flex:1;" onclick="calculate()">HITUNG, TABEL & KURVA</button>
+                    <button onclick="resetDefaults()">RESET</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="result-hero">
+                    <div class="result-kicker">RINGKASAN HASIL UTAMA</div>
+                    <div class="result-value" id="resMain">-</div>
+                    <div class="result-desc" id="resNote"></div>
+                </div>
+
+                <div id="kpiStrip" class="kpi-strip"></div>
+
+                <div id="tablePanel" class="table-panel">
+                    <div class="section-heading" style="color:var(--accent-1);margin-bottom:10px;" id="tableHeading">TABEL PENERAPAN & RINCIAN</div>
+                    <div id="tableContent" class="table-wrap"></div>
+                </div>
+
+                <div class="steps-panel">
+                    <div class="section-heading" style="color:var(--accent-3);margin-bottom:10px;">Alur Penyelesaian & Penerapan Angka dalam Rumus</div>
+                    <div id="stepsList"></div>
+                </div>
+
+                <div class="chart-panel">
+                    <div class="chart-header">
+                        <div class="chart-title" id="vizTitle">KURVA & VISUALISASI DINAMIS</div>
+                        <div class="chart-legend" id="vizLegend"></div>
+                    </div>
+                    <canvas id="vizCanvas" width="640" height="240"></canvas>
+                    <div class="chart-note" id="vizCaption"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="panel footer">
+            <div>
+                <div class="footer-brand">&copy; 2026 <strong>ECONO CALC PRO</strong> • Developer: <strong>Zeeo (Vektor Zero - Dev)</strong></div>
+                <div class="footer-note">Kamus Tanda Rumus • Neraca Lengkap • Tabel Akuntansi & Ekonomi • Kurva SMA (Kelas X, XI, XII).</div>
+            </div>
+            <div class="toolbar">
+                <a class="btn-action btn-wa" href="https://wa.me/6282371729760?text=Halo%20Zeeo%20(Vektor%20Zero%20-%20Dev)%2C%20saya%20ingin%20menghubungi%20terkait%20ECONO%20CALC%20PRO." target="_blank" rel="noopener noreferrer">💬 WhatsApp: 0823-7172-9760</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="qrModal" class="modal hidden">
+        <div class="modal-box">
+            <button onclick="closeQR()" style="position:absolute;top:12px;right:12px;padding:5px 10px;">✕</button>
+            <h3 style="color:var(--accent-1);font-size:16px;font-weight:900;margin-bottom:6px;">BUKA DI HP SISWA</h3>
+            <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Salin tautan halaman ini untuk membukanya di perangkat HP.</p>
+            <div style="background:var(--bg-inset);border:1px solid var(--border-subtle);border-radius:11px;padding:11px;margin-bottom:12px;word-break:break-all;font-size:12px;color:var(--text-secondary);" id="qrUrlBox"></div>
+            <button class="btn-primary" style="width:100%;" onclick="copyPageUrl()">SALIN TAUTAN HALAMAN</button>
+            <div id="copyFeedback" style="font-size:12px;color:var(--accent-1);font-weight:700;margin-top:8px;height:16px;"></div>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(themeName) {
+            document.body.setAttribute("data-theme", themeName);
+            if (lastChart) renderChart(lastChart);
+        }
+
+        const fmt = (n) => Number(n || 0).toLocaleString("id-ID", { maximumFractionDigits: 2 });
+        function mkStep(title, flow, calc, desc) { return { title, flow, calc, desc }; }
+
+        function buildHtmlTable(headers, rows) {
+            const thHtml = headers.map(h => `<th class="${h.num ? 'num-col' : ''}">${h.label}</th>`).join("");
+            const trHtml = rows.map(r => {
+                const cls = r.type === "section" ? "row-section" : (r.type === "total" ? "row-total" : "");
+                const cells = r.cells.map((c, idx) => {
+                    const isNum = headers[idx] && headers[idx].num;
+                    return `<td class="${isNum ? 'num-col' : ''}">${c}</td>`;
+                }).join("");
+                return `<tr class="${cls}">${cells}</tr>`;
+            }).join("");
+            return `<table class="data-table"><thead><tr>${thHtml}</tr></thead><tbody>${trHtml}</tbody></table>`;
+        }
+
+        /* ===================== KAMUS TANDA & SIMBOL RUMUS ===================== */
+        const symbolDictionary = [
+            { token: "∑", name: "Sigma (Penjumlahan)", desc: "Menjumlahkan seluruh komponen atau data dalam deret/kelompok tertentu." },
+            { token: "Δ", name: "Delta (Selisih / Perubahan)", desc: "Perubahan nilai: Nilai Baru/Akhir dikurangi Nilai Awal." },
+            { token: "÷", name: "Tanda Bagi", desc: "Operasi pembagian untuk mencari rasio, rata-rata, atau hasil bagi." },
+            { token: "×", name: "Tanda Kali", desc: "Operasi perkalian (bisa juga ditulis berdempetan, misal b·Pe atau 2P)." },
+            { token: "max", name: "Maksimum", desc: "Memilih nilai angka yang paling besar di antara beberapa pilihan." },
+            { token: "−", name: "Tanda Kurang", desc: "Operasi pengurangan atau selisih antar variabel." },
+            { token: "+", name: "Tanda Tambah", desc: "Operasi penjumlahan antar komponen nilai." },
+            { token: "⇒", name: "Maka / Menjadi", desc: "Menunjukkan penurunan atau hasil lanjutan dari persamaan sebelumnya." },
+            { token: "|…|", name: "Nilai Mutlak", desc: "Mengambil besaran positif dari suatu nilai (mengabaikan tanda minus)." },
+            { token: "₀", name: "Subskrip Nol (Awal / Dasar)", desc: "Menandakan posisi awal atau tahun dasar (contoh: M₀, P0, Q0)." },
+            { token: "ₙ", name: "Subskrip n (Periode ke-n)", desc: "Menandakan periode, jumlah tahun, atau waktu ke-n (contoh: M_n, Pn, Qn)." },
+            { token: "t", name: "Waktu / Tahun Berjalan", desc: "Menandakan periode waktu (tahun) atau tahun berjalan (t) dan sebelumnya (t−1)." },
+            { token: "i", name: "Suku Bunga", desc: "Tingkat bunga per periode (biasanya dinyatakan dalam persen lalu diubah ke desimal)." },
+            { token: "%", name: "Persen (Per Seratus)", desc: "Satuan persentase; mengubah ke desimal dengan membagi 100 (÷ 100)." }
+        ];
+
+        function renderSymbolsForFormula(mathText) {
+            const wrap = document.getElementById("fSymbols");
+            const matched = symbolDictionary.filter(s => {
+                if (s.token === "₀") return mathText.includes("₀") || mathText.includes("0");
+                if (s.token === "ₙ") return mathText.includes("ₙ") || mathText.includes("n");
+                return mathText.includes(s.token);
+            });
+            const list = matched.length ? matched : symbolDictionary.slice(0, 4);
+            wrap.innerHTML = list.map(s => `
+                <div class="sym-chip">
+                    <span class="sym-token">${s.token}</span>
+                    <span class="sym-name">${s.name}</span>
+                    <span class="sym-desc">${s.desc}</span>
+                </div>
+            `).join("");
+        }
+
+        /* ===================== DATA KURIKULUM EKONOMI SMA LENGKAP ===================== */
+        const curriculumData = [
+            /* ================= KELAS X - SEMESTER 1 ================= */
+            {
+                id: "x_s1_b1", cls: "X", sem: 1, badge: "KELAS X • SEMESTER 1 • BAB 1",
+                title: "Kelangkaan, Skala Prioritas & Biaya Peluang",
+                formulas: [
+                    {
+                        name: "1. Biaya Peluang (Opportunity Cost) & Tabel Pilihan",
+                        math: "Biaya Peluang = max(Nilai Alternatif 1, Nilai Alternatif 2)   |   Manfaat Bersih = Pilihan − Biaya Peluang",
+                        legend: "Biaya peluang adalah nilai manfaat terbaik yang dikorbankan saat memilih suatu alternatif. Tabel membantu membandingkan seluruh opsi yang tersedia.",
+                        inputs: [
+                            { group: "Evaluasi Pilihan & Alternatif", id: "ambil", label: "Manfaat Pilihan Diambil (Rp)", val: 2500000 },
+                            { group: "Evaluasi Pilihan & Alternatif", id: "alt1", label: "Manfaat Alternatif 1 Dilepas (Rp)", val: 2200000 },
+                            { group: "Evaluasi Pilihan & Alternatif", id: "alt2", label: "Manfaat Alternatif 2 Dilepas (Rp)", val: 1750000 }
+                        ],
+                        solve: (v) => {
+                            const opp = Math.max(v.alt1, v.alt2);
+                            const bersih = v.ambil - opp;
+                            return {
+                                status: bersih >= 0 ? "OPTIRMAL (+)" : "PERLU TINJAU",
+                                warn: bersih < 0,
+                                main: `Biaya Peluang = Rp ${fmt(opp)}`,
+                                note: `Pilihan diambil bernilai Rp ${fmt(v.ambil)}, biaya peluang Rp ${fmt(opp)}, selisih manfaat ${bersih >= 0 ? "+" : "-"}Rp ${fmt(Math.abs(bersih))}.`,
+                                kpis: [
+                                    { label: "Pilihan Diambil", val: `Rp ${fmt(v.ambil)}` },
+                                    { label: "Biaya Peluang", val: `Rp ${fmt(opp)}` },
+                                    { label: "Selisih Manfaat", val: `${bersih >= 0 ? "+" : "-"}Rp ${fmt(Math.abs(bersih))}` }
+                                ],
+                                tableTitle: "Tabel Matriks Analisis Biaya Peluang",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Alternatif" }, { label: "Status" }, { label: "Nilai Manfaat", num: true }],
+                                    [
+                                        { cells: ["Pilihan Utama", "Diambil", `Rp ${fmt(v.ambil)}`] },
+                                        { cells: ["Alternatif 1", v.alt1 >= v.alt2 ? "Biaya Peluang" : "Dilepas", `Rp ${fmt(v.alt1)}`] },
+                                        { cells: ["Alternatif 2", v.alt2 > v.alt1 ? "Biaya Peluang" : "Dilepas", `Rp ${fmt(v.alt2)}`] },
+                                        { type: "total", cells: ["Biaya Peluang Terpilih", "Nilai Terbaik Dilepas", `Rp ${fmt(opp)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Tentukan Biaya Peluang", "Alur: Ambil nilai tertinggi dari alternatif yang tidak dipilih.", `Biaya Peluang = max(Rp ${fmt(v.alt1)}, Rp ${fmt(v.alt2)}) = Rp ${fmt(opp)}`, "Hanya satu manfaat terbaik yang dikorbankan yang menjadi biaya peluang."),
+                                    mkStep("Hitung Selisih Manfaat", "Alur: Kurangi nilai pilihan diambil dengan biaya peluang.", `Selisih = Rp ${fmt(v.ambil)} − Rp ${fmt(opp)} = ${bersih >= 0 ? "+" : "-"}Rp ${fmt(Math.abs(bersih))}`, "Menunjukkan keunggulan nilai keputusan yang diambil.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Perbandingan Nilai Pilihan & Biaya Peluang",
+                                    caption: "Membandingkan nilai pilihan utama, biaya peluang, dan alternatif lain.",
+                                    items: [
+                                        { label: "Pilihan Diambil", val: v.ambil, color: "#2dd4bf" },
+                                        { label: "Biaya Peluang", val: opp, color: "#fbbf24" },
+                                        { label: "Alternatif Lain", val: Math.min(v.alt1, v.alt2), color: "#818cf8" }
+                                    ]
+                                }
+                            };
+                        }
+                    },
+                    {
+                        name: "2. Rasio Pemenuhan & Tabel Skala Prioritas Kelangkaan",
+                        math: "Rasio Pemenuhan = (Ketersediaan ÷ Kebutuhan) × 100%   |   Defisit = Kebutuhan − Ketersediaan",
+                        legend: "Mengukur seberapa besar kebutuhan dapat dipenuhi oleh alat pemuas yang tersedia serta besarnya defisit kelangkaan.",
+                        inputs: [
+                            { group: "Data Ketersediaan & Kebutuhan", id: "sedia", label: "Ketersediaan Alat Pemuas", val: 75 },
+                            { group: "Data Ketersediaan & Kebutuhan", id: "butuh", label: "Total Kebutuhan", val: 120 },
+                            { group: "Rincian Prioritas", id: "primer", label: "Porsi Kebutuhan Primer", val: 60 },
+                            { group: "Rincian Prioritas", id: "sekunder", label: "Porsi Kebutuhan Sekunder", val: 40 },
+                            { group: "Rincian Prioritas", id: "tersier", label: "Porsi Kebutuhan Tersier", val: 20 }
+                        ],
+                        solve: (v) => {
+                            const pct = v.butuh > 0 ? (v.sedia / v.butuh) * 100 : 0;
+                            const defisit = Math.max(0, v.butuh - v.sedia);
+                            const sisaSetelahPrimer = Math.max(0, v.sedia - v.primer);
+                            return {
+                                status: defisit > 0 ? "DEFISIT / LANGKA" : "TERCUKUPI",
+                                warn: defisit > 0,
+                                main: `Pemenuhan = ${pct.toFixed(2)}%  |  Defisit = ${fmt(defisit)}`,
+                                note: `Dengan ketersediaan ${fmt(v.sedia)} dari kebutuhan ${fmt(v.butuh)}, defisit mencapai ${fmt(defisit)}.`,
+                                kpis: [
+                                    { label: "Rasio Pemenuhan", val: `${pct.toFixed(2)}%` },
+                                    { label: "Defisit Kelangkaan", val: fmt(defisit) },
+                                    { label: "Sisa Pasca-Primer", val: fmt(sisaSetelahPrimer) }
+                                ],
+                                tableTitle: "Tabel Simulasi Alokasi Skala Prioritas",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Tingkat Prioritas" }, { label: "Kebutuhan", num: true }, { label: "Alokasi Tersedia", num: true }, { label: "Selisih", num: true }],
+                                    [
+                                        { cells: ["Primer (Mendesak)", fmt(v.primer), fmt(Math.min(v.sedia, v.primer)), fmt(Math.min(v.sedia, v.primer) - v.primer)] },
+                                        { cells: ["Sekunder", fmt(v.sekunder), fmt(Math.max(0, Math.min(v.sedia - v.primer, v.sekunder))), fmt(Math.max(0, Math.min(v.sedia - v.primer, v.sekunder)) - v.sekunder)] },
+                                        { cells: ["Tersier", fmt(v.tersier), fmt(Math.max(0, v.sedia - v.primer - v.sekunder)), fmt(Math.max(0, v.sedia - v.primer - v.sekunder) - v.tersier)] },
+                                        { type: "total", cells: ["Total Keseluruhan", fmt(v.butuh), fmt(v.sedia), fmt(v.sedia - v.butuh)] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Rasio Pemenuhan", "Alur: Bagi ketersediaan dengan total kebutuhan lalu kalikan 100%.", `Rasio = (${fmt(v.sedia)} ÷ ${fmt(v.butuh)}) × 100% = ${pct.toFixed(2)}%`, "Persentase kebutuhan yang dapat terpenuhi."),
+                                    mkStep("Hitung Defisit Kelangkaan", "Alur: Kurangi total kebutuhan dengan ketersediaan.", `Defisit = ${fmt(v.butuh)} − ${fmt(v.sedia)} = ${fmt(defisit)}`, "Menunjukkan kekurangan yang harus diprioritaskan.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Kebutuhan vs Ketersediaan",
+                                    caption: "Membandingkan total kebutuhan dan ketersediaan alat pemuas.",
+                                    items: [
+                                        { label: "Ketersediaan", val: v.sedia, color: "#38bdf8" },
+                                        { label: "Kebutuhan", val: v.butuh, color: "#fb7185" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+            {
+                id: "x_s1_b2", cls: "X", sem: 1, badge: "KELAS X • SEMESTER 1 • BAB 2",
+                title: "Permintaan, Penawaran, Keseimbangan Pasar & Elastisitas",
+                formulas: [
+                    {
+                        name: "1. Keseimbangan Pasar (Qd = Qs) + Tabel Skedul Harga",
+                        math: "Qd = a − bP   dan   Qs = c + dP   ⇒   Pe = (a − c) ÷ (b + d)   |   Qe = a − b·Pe",
+                        legend: "Keseimbangan pasar tercapai saat jumlah yang diminta (Qd) sama dengan jumlah yang ditawarkan (Qs) pada harga Pe dan jumlah Qe.",
+                        inputs: [
+                            { group: "Fungsi Permintaan (Qd = a − bP)", id: "a", label: "Konstanta Permintaan (a)", val: 120 },
+                            { group: "Fungsi Permintaan (Qd = a − bP)", id: "b", label: "Koefisien Harga Permintaan (b)", val: 2 },
+                            { group: "Fungsi Penawaran (Qs = c + dP)", id: "c", label: "Konstanta Penawaran (c)", val: 30 },
+                            { group: "Fungsi Penawaran (Qs = c + dP)", id: "d", label: "Koefisien Harga Penawaran (d)", val: 3 }
+                        ],
+                        solve: (v) => {
+                            const denom = v.b + v.d;
+                            if (denom === 0) return { status: "ERROR", warn: true, main: "Tidak Terdefinisi", note: "b + d tidak boleh 0.", kpis: [], tableTitle: "", tableHtml: "", steps: [], chart: null };
+                            const pe = (v.a - v.c) / denom;
+                            const qe = v.a - v.b * pe;
+
+                            const pLow = Math.max(0, +(pe - 4).toFixed(1));
+                            const pHigh = +(pe + 4).toFixed(1);
+                            const sampleP = [pLow, +pe.toFixed(2), pHigh];
+                            const schedRows = sampleP.map(p => {
+                                const qd = v.a - v.b * p;
+                                const qs = v.c + v.d * p;
+                                const diff = qs - qd;
+                                const state = Math.abs(diff) < 0.05 ? "Keseimbangan (E)" : (diff > 0 ? "Surplus Penawaran" : "Shortage / Kelebihan Permintaan");
+                                return {
+                                    type: Math.abs(diff) < 0.05 ? "total" : "",
+                                    cells: [p.toFixed(2), qd.toFixed(2), qs.toFixed(2), state]
+                                };
+                            });
+
+                            return {
+                                status: "SEIMBANG (Qd = Qs)",
+                                warn: false,
+                                main: `Pe = ${pe.toFixed(2)}  |  Qe = ${qe.toFixed(2)}`,
+                                note: `Keseimbangan pasar terjadi pada harga Pe = ${pe.toFixed(2)} dan jumlah Qe = ${qe.toFixed(2)} unit.`,
+                                kpis: [
+                                    { label: "Harga Keseimbangan (Pe)", val: pe.toFixed(2) },
+                                    { label: "Jumlah Keseimbangan (Qe)", val: qe.toFixed(2) },
+                                    { label: "Nilai Transaksi (Pe × Qe)", val: fmt(pe * qe) }
+                                ],
+                                tableTitle: "Tabel Skedul Permintaan, Penawaran & Kondisi Pasar",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Harga (P)", num: true }, { label: "Permintaan (Qd)", num: true }, { label: "Penawaran (Qs)", num: true }, { label: "Status Pasar" }],
+                                    schedRows
+                                ),
+                                steps: [
+                                    mkStep("Samakan Fungsi Qd dan Qs", "Alur: Masukkan a, b, c, dan d ke persamaan Qd = Qs.", `${v.a} − ${v.b}P = ${v.c} + ${v.d}P`, "Mencari tingkat harga P yang menyamakan Qd dan Qs."),
+                                    mkStep("Hitung Harga Keseimbangan (Pe)", "Alur: Pe = (a − c) ÷ (b + d).", `Pe = (${v.a} − ${v.c}) ÷ (${v.b} + ${v.d}) = ${pe.toFixed(2)}`, "Diperoleh harga keseimbangan Pe."),
+                                    mkStep("Hitung Jumlah Keseimbangan (Qe)", "Alur: Substitusi Pe ke Qd = a − bP.", `Qe = ${v.a} − ${v.b}(${pe.toFixed(2)}) = ${qe.toFixed(2)}`, "Diperoleh jumlah keseimbangan Qe.")
+                                ],
+                                chart: {
+                                    type: "equilibrium",
+                                    title: "Kurva Keseimbangan Pasar: Permintaan (D) & Penawaran (S)",
+                                    caption: "Titik potong E(Qe, Pe) menunjukkan keseimbangan pasar antara kurva D dan S.",
+                                    a: v.a, b: v.b, c: v.c, d: v.d, pe, qe
+                                }
+                            };
+                        }
+                    },
+                    {
+                        name: "2. Pajak Spesifik (t) & Subsidi (s) Pasar",
+                        math: "Qs_t = c + d(P − t)   |   Qs_s = c + d(P + s)",
+                        legend: "Pajak spesifik (t) menggeser kurva penawaran ke kiri atas (harga keseimbangan naik); subsidi (s) menggeser ke kanan bawah (harga turun).",
+                        inputs: [
+                            { group: "Fungsi Awal", id: "a", label: "Konstanta Permintaan (a)", val: 120 },
+                            { group: "Fungsi Awal", id: "b", label: "Koefisien Permintaan (b)", val: 2 },
+                            { group: "Fungsi Awal", id: "c", label: "Konstanta Penawaran Awal (c)", val: 30 },
+                            { group: "Fungsi Awal", id: "d", label: "Koefisien Penawaran (d)", val: 3 },
+                            { group: "Intervensi Pemerintah", id: "t", label: "Pajak per Unit (t)", val: 5 },
+                            { group: "Intervensi Pemerintah", id: "s", label: "Subsidi per Unit (s)", val: 4 }
+                        ],
+                        solve: (v) => {
+                            const denom = v.b + v.d;
+                            const pe0 = (v.a - v.c) / denom;
+                            const qe0 = v.a - v.b * pe0;
+
+                            const cT = v.c - v.d * v.t;
+                            const peT = (v.a - cT) / denom;
+                            const qeT = v.a - v.b * peT;
+
+                            const cS = v.c + v.d * v.s;
+                            const peS = (v.a - cS) / denom;
+                            const qeS = v.a - v.b * peS;
+
+                            return {
+                                status: "ANALISIS PAJAK & SUBSIDI",
+                                warn: false,
+                                main: `Awal (${pe0.toFixed(2)}, ${qe0.toFixed(2)}) → Pajak (${peT.toFixed(2)}, ${qeT.toFixed(2)}) → Subsidi (${peS.toFixed(2)}, ${qeS.toFixed(2)})`,
+                                note: `Pajak t = ${v.t} menaikkan harga keseimbangan menjadi ${peT.toFixed(2)}; subsidi s = ${v.s} menurunkan harga menjadi ${peS.toFixed(2)}.`,
+                                kpis: [
+                                    { label: "Keseimbangan Awal", val: `P=${pe0.toFixed(2)} | Q=${qe0.toFixed(2)}` },
+                                    { label: "Setelah Pajak (t)", val: `P=${peT.toFixed(2)} | Q=${qeT.toFixed(2)}` },
+                                    { label: "Setelah Subsidi (s)", val: `P=${peS.toFixed(2)} | Q=${qeS.toFixed(2)}` }
+                                ],
+                                tableTitle: "Tabel Perbandingan Kondisi Keseimbangan Pasar",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Kondisi Pasar" }, { label: "Konstanta Penawaran", num: true }, { label: "Harga (Pe)", num: true }, { label: "Jumlah (Qe)", num: true }, { label: "Total Pajak/Subsidi", num: true }],
+                                    [
+                                        { cells: ["Tanpa Intervensi", fmt(v.c), pe0.toFixed(2), qe0.toFixed(2), "0"] },
+                                        { cells: [`Setelah Pajak (t=${v.t})`, fmt(cT), peT.toFixed(2), qeT.toFixed(2), fmt(v.t * qeT)] },
+                                        { type: "total", cells: [`Setelah Subsidi (s=${v.s})`, fmt(cS), peS.toFixed(2), qeS.toFixed(2), fmt(v.s * qeS)] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Keseimbangan Setelah Pajak", "Alur: Qs_t = c + d(P − t), lalu cari Pe' dan Qe'.", `Qs_t = ${cT} + ${v.d}P   ⇒   Pe' = ${peT.toFixed(2)}, Qe' = ${qeT.toFixed(2)}`, "Pajak spesifik mengurangi konstanta penawaran sebesar d·t."),
+                                    mkStep("Hitung Keseimbangan Setelah Subsidi", "Alur: Qs_s = c + d(P + s), lalu cari Pe'' dan Qe''.", `Qs_s = ${cS} + ${v.d}P   ⇒   Pe'' = ${peS.toFixed(2)}, Qe'' = ${qeS.toFixed(2)}`, "Subsidi menambah konstanta penawaran sebesar d·s.")
+                                ],
+                                chart: {
+                                    type: "equilibrium",
+                                    title: "Kurva Keseimbangan Setelah Pajak (Qs_t)",
+                                    caption: "Menampilkan keseimbangan pasar setelah pajak spesifik t diterapkan.",
+                                    a: v.a, b: v.b, c: cT, d: v.d, pe: peT, qe: qeT
+                                }
+                            };
+                        }
+                    },
+                    {
+                        name: "3. Elastisitas Harga, Pendapatan & Silang",
+                        math: "E = |(ΔQ ÷ ΔX) × (X1 ÷ Q1)|   dengan   ΔQ = Q2 − Q1   dan   ΔX = X2 − X1",
+                        legend: "Mengukur kepekaan perubahan jumlah barang (Q) terhadap perubahan harga (P), pendapatan (I), atau harga barang lain (Py).",
+                        inputs: [
+                            { group: "Data Awal (Periode 1)", id: "x1", label: "Harga / Pendapatan / Py Awal (X1)", val: 10000 },
+                            { group: "Data Awal (Periode 1)", id: "q1", label: "Jumlah Barang Awal (Q1)", val: 40 },
+                            { group: "Data Baru (Periode 2)", id: "x2", label: "Harga / Pendapatan / Py Baru (X2)", val: 8000 },
+                            { group: "Data Baru (Periode 2)", id: "q2", label: "Jumlah Barang Baru (Q2)", val: 56 }
+                        ],
+                        solve: (v) => {
+                            const dQ = v.q2 - v.q1;
+                            const dX = v.x2 - v.x1;
+                            const eRaw = (dX !== 0 && v.q1 !== 0) ? (dQ / dX) * (v.x1 / v.q1) : 0;
+                            const eAbs = Math.abs(eRaw);
+                            const pctQ = v.q1 !== 0 ? (dQ / v.q1) * 100 : 0;
+                            const pctX = v.x1 !== 0 ? (dX / v.x1) * 100 : 0;
+                            const jenis = Math.abs(eAbs - 1) < 0.001 ? "Elastis Uniter" : (eAbs > 1 ? "Elastis (|E| > 1)" : "Inelastis (|E| < 1)");
+                            return {
+                                status: jenis.toUpperCase(),
+                                warn: false,
+                                main: `|E| = ${eAbs.toFixed(2)} (${jenis})`,
+                                note: `Perubahan X sebesar ${pctX.toFixed(2)}% memicu perubahan Q sebesar ${pctQ.toFixed(2)}%.`,
+                                kpis: [
+                                    { label: "% Perubahan Q", val: `${pctQ.toFixed(2)}%` },
+                                    { label: "% Perubahan X", val: `${pctX.toFixed(2)}%` },
+                                    { label: "Koefisien |E|", val: eAbs.toFixed(2) }
+                                ],
+                                tableTitle: "Tabel Perhitungan Elastisitas",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Variabel" }, { label: "Nilai Awal (1)", num: true }, { label: "Nilai Baru (2)", num: true }, { label: "Selisih (Δ)", num: true }, { label: "Perubahan (%)", num: true }],
+                                    [
+                                        { cells: ["Faktor (X)", fmt(v.x1), fmt(v.x2), fmt(dX), `${pctX.toFixed(2)}%`] },
+                                        { cells: ["Kuantitas (Q)", fmt(v.q1), fmt(v.q2), fmt(dQ), `${pctQ.toFixed(2)}%`], type: "total" }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung ΔQ dan ΔX", "Alur: Kurangi nilai baru dengan nilai awal.", `ΔQ = ${v.q2} − ${v.q1} = ${dQ}   |   ΔX = ${v.x2} − ${v.x1} = ${dX}`, "Menentukan perubahan absolut masing-masing variabel."),
+                                    mkStep("Hitung Koefisien Elastisitas", "Alur: Kalikan (ΔQ ÷ ΔX) dengan (X1 ÷ Q1) lalu ambil nilai mutlaknya.", `|E| = |(${dQ} ÷ ${dX}) × (${v.x1} ÷ ${v.q1})| = ${eAbs.toFixed(2)}`, `Kriteria: ${jenis}.`)
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Perbandingan Kuantitas: Q1 vs Q2",
+                                    caption: "Membandingkan kuantitas awal (Q1) dan kuantitas baru (Q2).",
+                                    items: [
+                                        { label: "Kuantitas Awal (Q1)", val: v.q1, color: "#38bdf8" },
+                                        { label: "Kuantitas Baru (Q2)", val: v.q2, color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+
+            /* ================= KELAS X - SEMESTER 2 ================= */
+            {
+                id: "x_s2_b3", cls: "X", sem: 2, badge: "KELAS X • SEMESTER 2 • BAB 3",
+                title: "Lembaga Jasa Keuangan (LJK) & Literasi Keuangan",
+                formulas: [
+                    {
+                        name: "1. Bunga Tunggal vs Bunga Majemuk + Tabel Periode",
+                        math: "Tunggal: I = M₀ × i × t   |   Majemuk: M_n = M₀ × (1 + i)ⁿ",
+                        legend: "Bunga tunggal dihitung konstan dari modal awal (M₀); bunga majemuk menghitung bunga atas bunga yang sudah terbentuk di periode sebelumnya.",
+                        inputs: [
+                            { group: "Parameter Modal & Bunga", id: "m0", label: "Modal Awal (M₀) (Rp)", val: 10000000 },
+                            { group: "Parameter Modal & Bunga", id: "i", label: "Suku Bunga per Tahun (i) (%)", val: 8 },
+                            { group: "Parameter Modal & Bunga", id: "n", label: "Jumlah Tahun (n)", val: 4 }
+                        ],
+                        solve: (v) => {
+                            const r = v.i / 100;
+                            const rows = [];
+                            for (let yr = 1; yr <= Math.max(1, Math.min(12, Math.round(v.n))); yr++) {
+                                const tunggal = v.m0 * (1 + r * yr);
+                                const majemuk = v.m0 * Math.pow(1 + r, yr);
+                                rows.push({
+                                    type: yr === Math.round(v.n) ? "total" : "",
+                                    cells: [`Tahun ke-${yr}`, `Rp ${fmt(tunggal)}`, `Rp ${fmt(majemuk)}`, `Rp ${fmt(majemuk - tunggal)}`]
+                                });
+                            }
+                            const finalT = v.m0 * (1 + r * v.n);
+                            const finalM = v.m0 * Math.pow(1 + r, v.n);
+                            return {
+                                status: "SIMULASI BUNGA",
+                                warn: false,
+                                main: `Majemuk (${v.n} thn) = Rp ${fmt(finalM)}  |  Tunggal = Rp ${fmt(finalT)}`,
+                                note: `Selisih nilai akhir bunga majemuk terhadap bunga tunggal pada tahun ke-${v.n} sebesar Rp ${fmt(finalM - finalT)}.`,
+                                kpis: [
+                                    { label: "Modal Awal (M₀)", val: `Rp ${fmt(v.m0)}` },
+                                    { label: "Saldo Tunggal", val: `Rp ${fmt(finalT)}` },
+                                    { label: "Saldo Majemuk", val: `Rp ${fmt(finalM)}` }
+                                ],
+                                tableTitle: "Tabel Proyeksi Saldo Bunga Tunggal vs Majemuk per Tahun",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Periode" }, { label: "Saldo Bunga Tunggal", num: true }, { label: "Saldo Bunga Majemuk", num: true }, { label: "Selisih", num: true }],
+                                    rows
+                                ),
+                                steps: [
+                                    mkStep("Hitung Bunga Tunggal", "Alur: I = M₀ × i × t, lalu tambahkan ke M₀.", `I = Rp ${fmt(v.m0)} × ${r} × ${v.n} = Rp ${fmt(v.m0 * r * v.n)}   ⇒   Saldo = Rp ${fmt(finalT)}`, "Bunga bertambah secara linear tiap periode."),
+                                    mkStep("Hitung Bunga Majemuk", "Alur: M_n = M₀ × (1 + i)ⁿ.", `M_n = Rp ${fmt(v.m0)} × (1 + ${r})^${v.n} = Rp ${fmt(finalM)}`, "Bunga bertambah secara eksponensial karena ikut berbunga.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Perbandingan Saldo Akhir: Tunggal vs Majemuk",
+                                    caption: "Membandingkan modal awal, saldo bunga tunggal, dan saldo bunga majemuk.",
+                                    items: [
+                                        { label: "Modal Awal", val: v.m0, color: "#38bdf8" },
+                                        { label: "Bunga Tunggal", val: finalT, color: "#fbbf24" },
+                                        { label: "Bunga Majemuk", val: finalM, color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    },
+                    {
+                        name: "2. Cicilan & Rasio Kesehatan Keuangan Bulanan",
+                        math: "Cicilan/Bln = (Pokok ÷ Tenor) + (Pokok × i ÷ 12)   |   Rasio = (Cicilan ÷ Penghasilan) × 100%",
+                        legend: "Membantu merencanakan anggaran bulanan agar cicilan tidak membebani arus kas rumah tangga.",
+                        inputs: [
+                            { group: "Data Pinjaman", id: "pokok", label: "Pokok Pinjaman (Rp)", val: 24000000 },
+                            { group: "Data Pinjaman", id: "tenor", label: "Tenor (Bulan)", val: 12 },
+                            { group: "Data Pinjaman", id: "bunga", label: "Bunga Flat per Tahun (%)", val: 9 },
+                            { group: "Arus Kas Bulanan", id: "gaji", label: "Penghasilan Bulanan (Rp)", val: 6500000 }
+                        ],
+                        solve: (v) => {
+                            const cPokok = v.tenor > 0 ? v.pokok / v.tenor : 0;
+                            const cBunga = (v.pokok * (v.bunga / 100)) / 12;
+                            const cicilan = cPokok + cBunga;
+                            const rasio = v.gaji > 0 ? (cicilan / v.gaji) * 100 : 0;
+                            return {
+                                status: rasio <= 35 ? "SEHAT (≤35%)" : "PERLU WASPADA (>35%)",
+                                warn: rasio > 35,
+                                main: `Cicilan = Rp ${fmt(cicilan)}/bln  |  Rasio = ${rasio.toFixed(1)}%`,
+                                note: `Sisa penghasilan setelah cicilan sebesar Rp ${fmt(v.gaji - cicilan)} per bulan.`,
+                                kpis: [
+                                    { label: "Cicilan Pokok/Bln", val: `Rp ${fmt(cPokok)}` },
+                                    { label: "Bunga/Bln", val: `Rp ${fmt(cBunga)}` },
+                                    { label: "Rasio Cicilan", val: `${rasio.toFixed(1)}%` }
+                                ],
+                                tableTitle: "Tabel Rincian Angsuran & Arus Kas Bulanan",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Komponen" }, { label: "Keterangan" }, { label: "Nilai (Rp)", num: true }],
+                                    [
+                                        { cells: ["Cicilan Pokok", `Pokok ÷ ${v.tenor} bulan`, `Rp ${fmt(cPokok)}`] },
+                                        { cells: ["Bunga Bulanan", `${v.bunga}% ÷ 12 bulan`, `Rp ${fmt(cBunga)}`] },
+                                        { type: "total", cells: ["Total Cicilan / Bulan", `${rasio.toFixed(1)}% dari penghasilan`, `Rp ${fmt(cicilan)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Cicilan Pokok & Bunga per Bulan", "Alur: Bagi pokok dengan tenor dan tambahkan bunga bulanan.", `Cicilan = Rp ${fmt(cPokok)} + Rp ${fmt(cBunga)} = Rp ${fmt(cicilan)}/bln`, "Angsuran bulanan tetap."),
+                                    mkStep("Hitung Rasio Cicilan Terhadap Penghasilan", "Alur: (Cicilan ÷ Penghasilan) × 100%.", `Rasio = (Rp ${fmt(cicilan)} ÷ Rp ${fmt(v.gaji)}) × 100% = ${rasio.toFixed(1)}%`, "Mengukur porsi pendapatan yang terserap cicilan.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Cicilan Bulanan vs Penghasilan",
+                                    caption: "Membandingkan cicilan bulanan dengan penghasilan bulanan.",
+                                    items: [
+                                        { label: "Cicilan / Bulan", val: cicilan, color: "#fbbf24" },
+                                        { label: "Penghasilan / Bulan", val: v.gaji, color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+            {
+                id: "x_s2_b4", cls: "X", sem: 2, badge: "KELAS X • SEMESTER 2 • BAB 4",
+                title: "Bank Sentral, Sistem Pembayaran & Kebijakan Moneter",
+                formulas: [
+                    {
+                        name: "1. Teori Kuantitas Uang (M×V = P×T) & Multiplier Bank",
+                        math: "P = (M × V) ÷ T   |   Multiplier (m) = 1 ÷ r   |   Potensi Uang = m × Simpanan Awal",
+                        legend: "Menghubungkan jumlah uang beredar (M), kecepatan peredaran uang (V), tingkat harga (P), volume transaksi (T), serta pengganda uang bank sentral/umum.",
+                        inputs: [
+                            { group: "Kuantitas Uang", id: "m", label: "Jumlah Uang Beredar (M)", val: 500 },
+                            { group: "Kuantitas Uang", id: "v", label: "Kecepatan Peredaran (V)", val: 4 },
+                            { group: "Kuantitas Uang", id: "t", label: "Volume Transaksi (T)", val: 200 },
+                            { group: "Giro Wajib Minimum", id: "gwm", label: "GWM / Cadangan Wajib (r) (%)", val: 10 },
+                            { group: "Giro Wajib Minimum", id: "simpanan", label: "Simpanan Awal (Rp)", val: 10000000 }
+                        ],
+                        solve: (v) => {
+                            const mv = v.m * v.v;
+                            const p = v.t > 0 ? mv / v.t : 0;
+                            const r = v.gwm / 100;
+                            const mult = r > 0 ? 1 / r : 0;
+                            const pot = mult * v.simpanan;
+                            return {
+                                status: "ANALISIS MONETER",
+                                warn: false,
+                                main: `Tingkat Harga (P) = ${p.toFixed(2)}  |  Multiplier = ${mult.toFixed(2)}x`,
+                                note: `M × V = ${fmt(mv)} menghasilkan P = ${p.toFixed(2)}, dan GWM ${v.gwm}% memberi multiplier ${mult.toFixed(2)}x.`,
+                                kpis: [
+                                    { label: "M × V", val: fmt(mv) },
+                                    { label: "Tingkat Harga (P)", val: p.toFixed(2) },
+                                    { label: "Potensi Total Uang", val: `Rp ${fmt(pot)}` }
+                                ],
+                                tableTitle: "Tabel Ringkasan Indikator Moneter",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Indikator Moneter" }, { label: "Rumus" }, { label: "Hasil" }],
+                                    [
+                                        { cells: ["Nilai Transaksi Moneter", "M × V", fmt(mv)] },
+                                        { cells: ["Tingkat Harga Umum (P)", "(M × V) ÷ T", p.toFixed(2)] },
+                                        { cells: ["Angka Pengganda (m)", "1 ÷ r", `${mult.toFixed(2)}x`] },
+                                        { type: "total", cells: ["Potensi Total Uang", "m × Simpanan Awal", `Rp ${fmt(pot)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Tingkat Harga (P)", "Alur: P = (M × V) ÷ T.", `P = (${fmt(v.m)} × ${fmt(v.v)}) ÷ ${fmt(v.t)} = ${p.toFixed(2)}`, "Tingkat harga umum menurut teori kuantitas uang."),
+                                    mkStep("Hitung Multiplier & Potensi Uang", "Alur: m = 1 ÷ r lalu kalikan dengan simpanan awal.", `m = 1 ÷ ${r} = ${mult.toFixed(2)}   ⇒   Potensi = Rp ${fmt(pot)}`, "Menunjukkan efek pengganda perbankan.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Perbandingan: Simpanan Awal vs Potensi Total Uang",
+                                    caption: "Membandingkan simpanan awal dengan potensi uang setelah efek pengganda.",
+                                    items: [
+                                        { label: "Simpanan Awal", val: v.simpanan, color: "#38bdf8" },
+                                        { label: "Potensi Uang", val: pot, color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+
+            /* ================= KELAS XI - SEMESTER 1 ================= */
+            {
+                id: "xi_s1_b1", cls: "XI", sem: 1, badge: "KELAS XI • SEMESTER 1 • BAB 1",
+                title: "Pendapatan Nasional & Kesenjangan Ekonomi",
+                formulas: [
+                    {
+                        name: "1. PDB Pengeluaran, Turunan (PDB → DI) & Per Kapita",
+                        math: "Y = C + I + G + (X − M)   |   DI = PDB − Neto LN − Penyusutan − Pajak TL − Pajak L",
+                        legend: "Menghitung PDB pendekatan pengeluaran, menurunkan konsep pendapatan nasional hingga Disposable Income (DI), serta pendapatan per kapita.",
+                        inputs: [
+                            { group: "Komponen PDB Pengeluaran", id: "c", label: "Konsumsi (C)", val: 5400 },
+                            { group: "Komponen PDB Pengeluaran", id: "i", label: "Investasi (I)", val: 3100 },
+                            { group: "Komponen PDB Pengeluaran", id: "g", label: "Pengeluaran Pemerintah (G)", val: 950 },
+                            { group: "Komponen PDB Pengeluaran", id: "x", label: "Ekspor (X)", val: 2100 },
+                            { group: "Komponen PDB Pengeluaran", id: "m", label: "Impor (M)", val: 1850 },
+                            { group: "Penyesuaian Konsep & Penduduk", id: "neto", label: "Neto Faktor LN", val: 250 },
+                            { group: "Penyesuaian Konsep & Penduduk", id: "dep", label: "Penyusutan", val: 450 },
+                            { group: "Penyesuaian Konsep & Penduduk", id: "ptl", label: "Pajak Tidak Langsung", val: 350 },
+                            { group: "Penyesuaian Konsep & Penduduk", id: "pl", label: "Pajak Langsung", val: 200 },
+                            { group: "Penyesuaian Konsep & Penduduk", id: "pop", label: "Jumlah Penduduk (Jiwa)", val: 100 }
+                        ],
+                        solve: (v) => {
+                            const nx = v.x - v.m;
+                            const pdb = v.c + v.i + v.g + nx;
+                            const pnb = pdb - v.neto;
+                            const pnn = pnb - v.dep;
+                            const nni = pnn - v.ptl;
+                            const di = nni - v.pl;
+                            const kapita = v.pop > 0 ? pdb / v.pop : 0;
+                            return {
+                                status: "PENDAPATAN NASIONAL",
+                                warn: false,
+                                main: `PDB (Y) = ${fmt(pdb)}  |  DI = ${fmt(di)}`,
+                                note: `Ekspor neto = ${fmt(nx)}, PDB = ${fmt(pdb)}, Disposable Income (DI) = ${fmt(di)}, dan PDB per kapita = ${fmt(kapita)}.`,
+                                kpis: [
+                                    { label: "PDB (Y)", val: fmt(pdb) },
+                                    { label: "NNI", val: fmt(nni) },
+                                    { label: "Disposable Income", val: fmt(di) },
+                                    { label: "Per Kapita", val: fmt(kapita) }
+                                ],
+                                tableTitle: "Tabel Alur Konsep Pendapatan Nasional (PDB → DI)",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Konsep Pendapatan" }, { label: "Langkah Penyesuaian" }, { label: "Nilai", num: true }],
+                                    [
+                                        { cells: ["PDB (Y)", "C + I + G + (X − M)", fmt(pdb)] },
+                                        { cells: ["PNB", `PDB − Neto LN (${fmt(v.neto)})`, fmt(pnb)] },
+                                        { cells: ["PNN", `PNB − Penyusutan (${fmt(v.dep)})`, fmt(pnn)] },
+                                        { cells: ["NNI", `PNN − Pajak TL (${fmt(v.ptl)})`, fmt(nni)] },
+                                        { type: "total", cells: ["Disposable Income (DI)", `NNI − Pajak L (${fmt(v.pl)})`, fmt(di)] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Ekspor Neto & PDB (Y)", "Alur: X − M lalu jumlahkan C + I + G + (X − M).", `Y = ${fmt(v.c)} + ${fmt(v.i)} + ${fmt(v.g)} + (${fmt(nx)}) = ${fmt(pdb)}`, "PDB mengukur nilai output akhir wilayah."),
+                                    mkStep("Turunkan Hingga Disposable Income (DI)", "Alur: Kurangi bertahap Neto LN, Penyusutan, Pajak TL, dan Pajak L.", `PNB=${fmt(pnb)} → PNN=${fmt(pnn)} → NNI=${fmt(nni)} → DI=${fmt(di)}`, "DI adalah pendapatan siap dibelanjakan.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Perbandingan: PDB, PNB, NNI & DI",
+                                    caption: "Membandingkan tingkatan konsep pendapatan nasional.",
+                                    items: [
+                                        { label: "PDB", val: pdb, color: "#38bdf8" },
+                                        { label: "PNB", val: pnb, color: "#2dd4bf" },
+                                        { label: "NNI", val: nni, color: "#fbbf24" },
+                                        { label: "DI", val: di, color: "#818cf8" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+            {
+                id: "xi_s1_b2", cls: "XI", sem: 1, badge: "KELAS XI • SEMESTER 1 • BAB 2",
+                title: "Ketenagakerjaan & Pertumbuhan Ekonomi",
+                formulas: [
+                    {
+                        name: "1. TPAK, TPT & Laju Pertumbuhan Ekonomi (g)",
+                        math: "TPT = (Menganggur ÷ AK) × 100%   |   g = [(PDB_t − PDB_{t−1}) ÷ PDB_{t−1}] × 100%",
+                        legend: "Mengukur tingkat pengangguran terbuka dari angkatan kerja serta laju pertumbuhan ekonomi riil antarperiode.",
+                        inputs: [
+                            { group: "Ketenagakerjaan", id: "kerja", label: "Penduduk Bekerja", val: 138 },
+                            { group: "Ketenagakerjaan", id: "nganggur", label: "Pengangguran Terbuka", val: 7.5 },
+                            { group: "Ketenagakerjaan", id: "usia", label: "Penduduk Usia Kerja", val: 212 },
+                            { group: "Pertumbuhan Ekonomi", id: "p0", label: "PDB Riil Tahun Lalu (PDB_{t−1})", val: 11700 },
+                            { group: "Pertumbuhan Ekonomi", id: "p1", label: "PDB Riil Tahun Ini (PDB_t)", val: 12300 }
+                        ],
+                        solve: (v) => {
+                            const ak = v.kerja + v.nganggur;
+                            const tpak = v.usia > 0 ? (ak / v.usia) * 100 : 0;
+                            const tpt = ak > 0 ? (v.nganggur / ak) * 100 : 0;
+                            const tkk = 100 - tpt;
+                            const g = v.p0 > 0 ? ((v.p1 - v.p0) / v.p0) * 100 : 0;
+                            return {
+                                status: `TUMBUH ${g.toFixed(2)}%`,
+                                warn: false,
+                                main: `TPT = ${tpt.toFixed(2)}%  |  Pertumbuhan (g) = ${g.toFixed(2)}%`,
+                                note: `Angkatan kerja = ${fmt(ak)}, TPAK = ${tpak.toFixed(2)}%, TKK = ${tkk.toFixed(2)}%, dan pertumbuhan riil = ${g.toFixed(2)}%.`,
+                                kpis: [
+                                    { label: "Angkatan Kerja (AK)", val: fmt(ak) },
+                                    { label: "TPT", val: `${tpt.toFixed(2)}%` },
+                                    { label: "TKK", val: `${tkk.toFixed(2)}%` },
+                                    { label: "Pertumbuhan (g)", val: `${g.toFixed(2)}%` }
+                                ],
+                                tableTitle: "Tabel Indikator Ketenagakerjaan & Pertumbuhan",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Indikator" }, { label: "Dasar Perhitungan" }, { label: "Nilai" }],
+                                    [
+                                        { cells: ["Angkatan Kerja (AK)", "Bekerja + Menganggur", fmt(ak)] },
+                                        { cells: ["TPAK", "(AK ÷ Usia Kerja) × 100%", `${tpak.toFixed(2)}%`] },
+                                        { cells: ["TPT", "(Menganggur ÷ AK) × 100%", `${tpt.toFixed(2)}%`] },
+                                        { type: "total", cells: ["Pertumbuhan Ekonomi (g)", "[(PDB_t − PDB_{t−1}) ÷ PDB_{t−1}] × 100%", `${g.toFixed(2)}%`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung AK & TPT", "Alur: AK = Bekerja + Menganggur, lalu TPT = (Menganggur ÷ AK) × 100%.", `AK = ${fmt(ak)}   ⇒   TPT = ${tpt.toFixed(2)}%`, "Mengukur persentase angkatan kerja yang menganggur terbuka."),
+                                    mkStep("Hitung Laju Pertumbuhan Ekonomi (g)", "Alur: [(PDB_t − PDB_{t−1}) ÷ PDB_{t−1}] × 100%.", `g = [(${fmt(v.p1)} − ${fmt(v.p0)}) ÷ ${fmt(v.p0)}] × 100% = ${g.toFixed(2)}%`, "Mengukur pertumbuhan output riil.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Komposisi Penduduk Usia Kerja",
+                                    caption: "Membandingkan penduduk bekerja, menganggur, dan bukan angkatan kerja.",
+                                    items: [
+                                        { label: "Bekerja", val: v.kerja, color: "#2dd4bf" },
+                                        { label: "Menganggur", val: v.nganggur, color: "#fb7185" },
+                                        { label: "Bukan AK", val: Math.max(0, v.usia - ak), color: "#818cf8" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+
+            /* ================= KELAS XI - SEMESTER 2 ================= */
+            {
+                id: "xi_s2_b3", cls: "XI", sem: 2, badge: "KELAS XI • SEMESTER 2 • BAB 3",
+                title: "Indeks Harga, Inflasi & Fungsi Konsumsi/Tabungan",
+                formulas: [
+                    {
+                        name: "1. Indeks Laspeyres, Paasche & Laju Inflasi",
+                        math: "IL = [∑(Pn × Q0) ÷ ∑(P0 × Q0)] × 100   |   IP = [∑(Pn × Qn) ÷ ∑(P0 × Qn)] × 100",
+                        legend: "Indeks harga tertimbang mengukur perubahan harga menggunakan bobot kuantitas tahun dasar (Q0 pada Laspeyres) atau tahun berjalan (Qn pada Paasche).",
+                        inputs: [
+                            { group: "Laspeyres (Bobot Q0)", id: "pnq0", label: "∑(Pn × Q0)", val: 132000 },
+                            { group: "Laspeyres (Bobot Q0)", id: "p0q0", label: "∑(P0 × Q0)", val: 120000 },
+                            { group: "Paasche (Bobot Qn)", id: "pnqn", label: "∑(Pn × Qn)", val: 145000 },
+                            { group: "Paasche (Bobot Qn)", id: "p0qn", label: "∑(P0 × Qn)", val: 133000 }
+                        ],
+                        solve: (v) => {
+                            const il = v.p0q0 > 0 ? (v.pnq0 / v.p0q0) * 100 : 0;
+                            const ip = v.p0qn > 0 ? (v.pnqn / v.p0qn) * 100 : 0;
+                            return {
+                                status: "INDEKS & INFLASI",
+                                warn: false,
+                                main: `IL = ${il.toFixed(2)}  |  IP = ${ip.toFixed(2)}`,
+                                note: `Indeks Laspeyres menunjukkan inflasi ${(il - 100).toFixed(2)}% dan Indeks Paasche menunjukkan ${(ip - 100).toFixed(2)}%.`,
+                                kpis: [
+                                    { label: "Indeks Laspeyres", val: il.toFixed(2) },
+                                    { label: "Inflasi Laspeyres", val: `${(il - 100).toFixed(2)}%` },
+                                    { label: "Indeks Paasche", val: ip.toFixed(2) },
+                                    { label: "Inflasi Paasche", val: `${(ip - 100).toFixed(2)}%` }
+                                ],
+                                tableTitle: "Tabel Perbandingan Indeks Harga Tertimbang",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Metode Indeks" }, { label: "Bobot" }, { label: "Nilai Indeks", num: true }, { label: "Implikasi Inflasi", num: true }],
+                                    [
+                                        { cells: ["Laspeyres (IL)", "Tahun Dasar (Q0)", il.toFixed(2), `${(il - 100).toFixed(2)}%`] },
+                                        { type: "total", cells: ["Paasche (IP)", "Tahun Berjalan (Qn)", ip.toFixed(2), `${(ip - 100).toFixed(2)}%`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Indeks Laspeyres (IL)", "Alur: [∑(Pn × Q0) ÷ ∑(P0 × Q0)] × 100.", `IL = (${fmt(v.pnq0)} ÷ ${fmt(v.p0q0)}) × 100 = ${il.toFixed(2)}`, "Menggunakan kuantitas tahun dasar."),
+                                    mkStep("Hitung Indeks Paasche (IP)", "Alur: [∑(Pn × Qn) ÷ ∑(P0 × Qn)] × 100.", `IP = (${fmt(v.pnqn)} ÷ ${fmt(v.p0qn)}) × 100 = ${ip.toFixed(2)}`, "Menggunakan kuantitas tahun berjalan.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Perbandingan Indeks Laspeyres vs Paasche",
+                                    caption: "Membandingkan nilai IL dan IP.",
+                                    items: [
+                                        { label: "Indeks Laspeyres", val: il, color: "#38bdf8" },
+                                        { label: "Indeks Paasche", val: ip, color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    },
+                    {
+                        name: "2. Fungsi Konsumsi (C), Tabungan (S) & Multiplier (k)",
+                        math: "C = a + bY   |   S = −a + (1 − b)Y   |   k = 1 ÷ (1 − b)",
+                        legend: "Menggambarkan pembagian pendapatan (Y) menjadi konsumsi (C) dan tabungan (S) serta angka pengganda pengeluaran (k).",
+                        inputs: [
+                            { group: "Parameter Fungsi", id: "a", label: "Konsumsi Otonom (a)", val: 200 },
+                            { group: "Parameter Fungsi", id: "b", label: "MPC (b, misal 0.75)", val: 0.75 },
+                            { group: "Pendapatan", id: "y", label: "Pendapatan (Y)", val: 1200 }
+                        ],
+                        solve: (v) => {
+                            const mps = 1 - v.b;
+                            const c = v.a + v.b * v.y;
+                            const s = -v.a + mps * v.y;
+                            const k = mps > 0 ? 1 / mps : 0;
+                            return {
+                                status: "KESEIMBANGAN Y = C + S",
+                                warn: false,
+                                main: `C = ${fmt(c)}  |  S = ${fmt(s)}  |  k = ${k.toFixed(2)}x`,
+                                note: `Pada pendapatan Y = ${fmt(v.y)}, konsumsi C = ${fmt(c)} dan tabungan S = ${fmt(s)}.`,
+                                kpis: [
+                                    { label: "Konsumsi (C)", val: fmt(c) },
+                                    { label: "Tabungan (S)", val: fmt(s) },
+                                    { label: "MPS (1 − b)", val: mps.toFixed(2) },
+                                    { label: "Multiplier (k)", val: `${k.toFixed(2)}x` }
+                                ],
+                                tableTitle: "Tabel Skedul Konsumsi & Tabungan pada Berbagai Tingkat Y",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Pendapatan (Y)", num: true }, { label: "Konsumsi (C)", num: true }, { label: "Tabungan (S)", num: true }],
+                                    [0.5, 1, 1.5].map(mult => {
+                                        const yVal = v.y * mult;
+                                        const cVal = v.a + v.b * yVal;
+                                        const sVal = -v.a + mps * yVal;
+                                        return {
+                                            type: mult === 1 ? "total" : "",
+                                            cells: [fmt(yVal), fmt(cVal), fmt(sVal)]
+                                        };
+                                    })
+                                ),
+                                steps: [
+                                    mkStep("Hitung C dan S", "Alur: Substitusi Y ke C = a + bY dan S = −a + (1 − b)Y.", `C = ${fmt(c)}   |   S = ${fmt(s)}`, "C + S selalu sama dengan Y."),
+                                    mkStep("Hitung Angka Pengganda (k)", "Alur: k = 1 ÷ (1 − b).", `k = 1 ÷ ${mps.toFixed(2)} = ${k.toFixed(2)}`, "Kelipatan dampak perubahan pengeluaran terhadap Y.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Alokasi Pendapatan: Y, C, dan S",
+                                    caption: "Membandingkan pendapatan (Y), konsumsi (C), dan tabungan (S).",
+                                    items: [
+                                        { label: "Pendapatan (Y)", val: v.y, color: "#38bdf8" },
+                                        { label: "Konsumsi (C)", val: c, color: "#2dd4bf" },
+                                        { label: "Tabungan (S)", val: Math.max(0, s), color: "#fbbf24" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+            {
+                id: "xi_s2_b4", cls: "XI", sem: 2, badge: "KELAS XI • SEMESTER 2 • BAB 4",
+                title: "APBN, APBD & Perpajakan",
+                formulas: [
+                    {
+                        name: "1. Saldo Anggaran & Pajak Bumi Bangunan (PBB)",
+                        math: "Saldo = Pendapatan − Belanja   |   NJKP = %NJKP × (NJOP − NJOPTKP)   |   PBB = Tarif × NJKP",
+                        legend: "Menghitung posisi surplus/defisit anggaran serta pajak terutang PBB berdasarkan NJOP, NJOPTKP, persentase NJKP, dan tarif.",
+                        inputs: [
+                            { group: "Anggaran", id: "rev", label: "Pendapatan Anggaran", val: 2800 },
+                            { group: "Anggaran", id: "exp", label: "Belanja Anggaran", val: 3320 },
+                            { group: "Objek PBB", id: "tanah", label: "NJOP Tanah (Rp)", val: 200000000 },
+                            { group: "Objek PBB", id: "bangun", label: "NJOP Bangunan (Rp)", val: 150000000 },
+                            { group: "Tarif PBB", id: "njoptkp", label: "NJOPTKP (Rp)", val: 12000000 },
+                            { group: "Tarif PBB", id: "njkpPct", label: "% NJKP", val: 20 },
+                            { group: "Tarif PBB", id: "tarif", label: "Tarif PBB (%)", val: 0.5 }
+                        ],
+                        solve: (v) => {
+                            const saldo = v.rev - v.exp;
+                            const njop = v.tanah + v.bangun;
+                            const njkp = Math.max(0, njop - v.njoptkp) * (v.njkpPct / 100);
+                            const pbb = njkp * (v.tarif / 100);
+                            return {
+                                status: saldo >= 0 ? "SURPLUS ANGGARAN" : "DEFISIT ANGGARAN",
+                                warn: saldo < 0,
+                                main: `Saldo = ${saldo >= 0 ? "+" : ""}${fmt(saldo)}  |  PBB = Rp ${fmt(pbb)}`,
+                                note: `Total NJOP = Rp ${fmt(njop)}, NJKP = Rp ${fmt(njkp)}, dan PBB terutang = Rp ${fmt(pbb)}.`,
+                                kpis: [
+                                    { label: "Saldo Anggaran", val: `${saldo >= 0 ? "+" : ""}${fmt(saldo)}` },
+                                    { label: "Total NJOP", val: `Rp ${fmt(njop)}` },
+                                    { label: "NJKP", val: `Rp ${fmt(njkp)}` },
+                                    { label: "PBB Terutang", val: `Rp ${fmt(pbb)}` }
+                                ],
+                                tableTitle: "Tabel Rincian Perhitungan PBB",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Tahap Perhitungan PBB" }, { label: "Nilai (Rp)", num: true }],
+                                    [
+                                        { cells: ["NJOP Tanah + NJOP Bangunan", `Rp ${fmt(njop)}`] },
+                                        { cells: ["Dikurangi NJOPTKP", `-Rp ${fmt(v.njoptkp)}`] },
+                                        { cells: [`NJKP (${v.njkpPct}% Dasar Kena Pajak)`, `Rp ${fmt(njkp)}`] },
+                                        { type: "total", cells: [`PBB Terutang (${v.tarif}% × NJKP)`, `Rp ${fmt(pbb)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Saldo Anggaran", "Alur: Pendapatan − Belanja.", `Saldo = ${fmt(v.rev)} − ${fmt(v.exp)} = ${fmt(saldo)}`, saldo < 0 ? "Defisit anggaran." : "Surplus anggaran."),
+                                    mkStep("Hitung NJKP & PBB", "Alur: NJKP = %NJKP × (NJOP − NJOPTKP), lalu kalikan tarif.", `PBB = ${v.tarif}% × Rp ${fmt(njkp)} = Rp ${fmt(pbb)}`, "Pajak bumi dan bangunan terutang.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Perbandingan Pendapatan vs Belanja Anggaran",
+                                    caption: "Membandingkan pendapatan dan belanja anggaran.",
+                                    items: [
+                                        { label: "Pendapatan", val: v.rev, color: "#2dd4bf" },
+                                        { label: "Belanja", val: v.exp, color: "#fb7185" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+
+            /* ================= KELAS XII - SEMESTER 1 (AKUNTANSI & NERACA LENGKAP) ================= */
+            {
+                id: "xii_s1_b1", cls: "XII", sem: 1, badge: "KELAS XII • SEMESTER 1 • BAB 1",
+                title: "Neraca Lengkap, Persamaan Dasar Akuntansi & Perubahan Modal",
+                formulas: [
+                    {
+                        name: "1. Neraca Lengkap (Aset Lancar/Tetap, Liabilitas & Ekuitas)",
+                        math: "Total Aset = Aset Lancar + Aset Tetap Neto   |   Total Aset = Total Liabilitas + Ekuitas Akhir",
+                        legend: "Menyusun neraca lengkap secara sistematis meliputi Aset Lancar, Aset Tetap (dikurangi akumulasi penyusutan), Liabilitas Jangka Pendek & Panjang, serta Ekuitas Akhir (Modal Awal + Laba Bersih − Prive).",
+                        inputs: [
+                            { group: "Aset Lancar", id: "kas", label: "Kas (Rp)", val: 45000000 },
+                            { group: "Aset Lancar", id: "piutang", label: "Piutang Usaha (Rp)", val: 25000000 },
+                            { group: "Aset Lancar", id: "persediaan", label: "Persediaan & Perlengkapan (Rp)", val: 30000000 },
+                            { group: "Aset Tetap", id: "peralatan", label: "Peralatan & Gedung (Rp)", val: 180000000 },
+                            { group: "Aset Tetap", id: "akumPeny", label: "Akumulasi Penyusutan (Rp)", val: 20000000 },
+                            { group: "Liabilitas", id: "utangPendek", label: "Utang Lancar / Usaha (Rp)", val: 40000000 },
+                            { group: "Liabilitas", id: "utangPanjang", label: "Utang Jangka Panjang / Bank (Rp)", val: 50000000 },
+                            { group: "Ekuitas", id: "modalAwal", label: "Modal Awal (Rp)", val: 145000000 },
+                            { group: "Ekuitas", id: "labaBersih", label: "Laba Bersih (Rp)", val: 35000000 },
+                            { group: "Ekuitas", id: "prive", label: "Prive (Rp)", val: 10000000 }
+                        ],
+                        solve: (v) => {
+                            const asetLancar = v.kas + v.piutang + v.persediaan;
+                            const asetTetapNeto = v.peralatan - v.akumPeny;
+                            const totalAset = asetLancar + asetTetapNeto;
+
+                            const totalLiabilitas = v.utangPendek + v.utangPanjang;
+                            const ekuitasAkhir = v.modalAwal + v.labaBersih - v.prive;
+                            const totalPasiva = totalLiabilitas + ekuitasAkhir;
+
+                            const selisih = totalAset - totalPasiva;
+                            const modalKerja = asetLancar - v.utangPendek;
+                            const cr = v.utangPendek > 0 ? asetLancar / v.utangPendek : 0;
+                            const der = ekuitasAkhir > 0 ? totalLiabilitas / ekuitasAkhir : 0;
+
+                            return {
+                                status: selisih === 0 ? "NERACA SEIMBANG" : `SELISIH Rp ${fmt(Math.abs(selisih))}`,
+                                warn: selisih !== 0,
+                                main: `Total Aset = Rp ${fmt(totalAset)}  |  Liabilitas + Ekuitas = Rp ${fmt(totalPasiva)}`,
+                                note: selisih === 0
+                                    ? `Neraca seimbang! Modal kerja bersih = Rp ${fmt(modalKerja)}, Current Ratio = ${cr.toFixed(2)}x, dan DER = ${der.toFixed(2)}x.`
+                                    : `Neraca belum seimbang sebesar Rp ${fmt(Math.abs(selisih))}. Sesuaikan komponen ekuitas atau utang.`,
+                                kpis: [
+                                    { label: "Aset Lancar", val: `Rp ${fmt(asetLancar)}` },
+                                    { label: "Aset Tetap Neto", val: `Rp ${fmt(asetTetapNeto)}` },
+                                    { label: "Modal Kerja Bersih", val: `Rp ${fmt(modalKerja)}` },
+                                    { label: "Current Ratio / DER", val: `${cr.toFixed(2)}x / ${der.toFixed(2)}x` }
+                                ],
+                                tableTitle: "Tabel Laporan Posisi Keuangan (Neraca Lengkap)",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Pos Aset" }, { label: "Nilai (Rp)", num: true }, { label: "Pos Liabilitas & Ekuitas" }, { label: "Nilai (Rp)", num: true }],
+                                    [
+                                        { type: "section", cells: ["ASET LANCAR", "", "LIABILITAS JANGKA PENDEK", ""] },
+                                        { cells: ["Kas", `Rp ${fmt(v.kas)}`, "Utang Usaha / Lancar", `Rp ${fmt(v.utangPendek)}`] },
+                                        { cells: ["Piutang Usaha", `Rp ${fmt(v.piutang)}`, "LIABILITAS JANGKA PANJANG", ""] },
+                                        { cells: ["Persediaan & Perlengkapan", `Rp ${fmt(v.persediaan)}`, "Utang Bank / Jangka Panjang", `Rp ${fmt(v.utangPanjang)}`] },
+                                        { cells: ["Jumlah Aset Lancar", `Rp ${fmt(asetLancar)}`, "Jumlah Liabilitas", `Rp ${fmt(totalLiabilitas)}`] },
+                                        { type: "section", cells: ["ASET TETAP", "", "EKUITAS", ""] },
+                                        { cells: ["Peralatan & Gedung", `Rp ${fmt(v.peralatan)}`, "Modal Awal", `Rp ${fmt(v.modalAwal)}`] },
+                                        { cells: ["Dikurangi Akum. Penyusutan", `-Rp ${fmt(v.akumPeny)}`, "Laba Bersih − Prive", `Rp ${fmt(v.labaBersih - v.prive)}`] },
+                                        { cells: ["Aset Tetap Neto", `Rp ${fmt(asetTetapNeto)}`, "Ekuitas Akhir", `Rp ${fmt(ekuitasAkhir)}`] },
+                                        { type: "total", cells: ["TOTAL ASET", `Rp ${fmt(totalAset)}`, "TOTAL LIABILITAS + EKUITAS", `Rp ${fmt(totalPasiva)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Total Aset", "Alur: (Kas + Piutang + Persediaan) + (Peralatan − Akumulasi Penyusutan).", `Total Aset = Rp ${fmt(asetLancar)} + Rp ${fmt(asetTetapNeto)} = Rp ${fmt(totalAset)}`, "Menjumlahkan aset lancar dan nilai buku aset tetap."),
+                                    mkStep("Hitung Ekuitas Akhir & Total Pasiva", "Alur: Ekuitas Akhir = Modal Awal + Laba Bersih − Prive, lalu tambah Liabilitas.", `Ekuitas = Rp ${fmt(ekuitasAkhir)}   ⇒   Liabilitas + Ekuitas = Rp ${fmt(totalPasiva)}`, "Memastikan keseimbangan persamaan dasar akuntansi."),
+                                    mkStep("Analisis Rasio Neraca", "Alur: Modal Kerja = Aset Lancar − Utang Lancar; CR = Aset Lancar ÷ Utang Lancar.", `Modal Kerja = Rp ${fmt(modalKerja)}   |   CR = ${cr.toFixed(2)}x   |   DER = ${der.toFixed(2)}x`, "Menilai likuiditas dan struktur pendanaan.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Struktur Neraca: Total Aset, Liabilitas & Ekuitas",
+                                    caption: "Membandingkan Total Aset, Total Liabilitas, dan Ekuitas Akhir.",
+                                    items: [
+                                        { label: "Total Aset", val: totalAset, color: "#38bdf8" },
+                                        { label: "Liabilitas", val: totalLiabilitas, color: "#fb7185" },
+                                        { label: "Ekuitas Akhir", val: ekuitasAkhir, color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    },
+                    {
+                        name: "2. Persamaan Dasar Akuntansi & Perubahan Ekuitas",
+                        math: "Aset = Liabilitas + Ekuitas   |   Ekuitas Akhir = Ekuitas Awal + Laba Bersih − Prive",
+                        legend: "Menguji keseimbangan persamaan dasar akuntansi dan menghitung perubahan ekuitas dalam satu periode akuntansi.",
+                        inputs: [
+                            { group: "Persamaan Dasar", id: "aset", label: "Total Aset (Rp)", val: 245000000 },
+                            { group: "Persamaan Dasar", id: "utang", label: "Total Liabilitas (Rp)", val: 65000000 },
+                            { group: "Perubahan Ekuitas", id: "awal", label: "Ekuitas Awal (Rp)", val: 150000000 },
+                            { group: "Perubahan Ekuitas", id: "laba", label: "Laba Bersih (Rp)", val: 38000000 },
+                            { group: "Perubahan Ekuitas", id: "prive", label: "Prive (Rp)", val: 8000000 }
+                        ],
+                        solve: (v) => {
+                            const ekuitasAkhir = v.awal + v.laba - v.prive;
+                            const kanan = v.utang + ekuitasAkhir;
+                            const selisih = v.aset - kanan;
+                            return {
+                                status: selisih === 0 ? "SEIMBANG" : `SELISIH Rp ${fmt(Math.abs(selisih))}`,
+                                warn: selisih !== 0,
+                                main: `Ekuitas Akhir = Rp ${fmt(ekuitasAkhir)}  |  Aset = Rp ${fmt(v.aset)}`,
+                                note: `Kenaikan bersih ekuitas = Rp ${fmt(v.laba - v.prive)}, menghasilkan ekuitas akhir Rp ${fmt(ekuitasAkhir)}.`,
+                                kpis: [
+                                    { label: "Ekuitas Awal", val: `Rp ${fmt(v.awal)}` },
+                                    { label: "Ekuitas Akhir", val: `Rp ${fmt(ekuitasAkhir)}` },
+                                    { label: "Selisih Neraca", val: `Rp ${fmt(Math.abs(selisih))}` }
+                                ],
+                                tableTitle: "Tabel Laporan Perubahan Ekuitas",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Keterangan" }, { label: "Jumlah (Rp)", num: true }],
+                                    [
+                                        { cells: ["Ekuitas Awal", `Rp ${fmt(v.awal)}`] },
+                                        { cells: ["Ditambah: Laba Bersih", `+Rp ${fmt(v.laba)}`] },
+                                        { cells: ["Dikurangi: Prive", `-Rp ${fmt(v.prive)}`] },
+                                        { type: "total", cells: ["Ekuitas Akhir", `Rp ${fmt(ekuitasAkhir)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Ekuitas Akhir", "Alur: Ekuitas Awal + Laba Bersih − Prive.", `Ekuitas Akhir = Rp ${fmt(v.awal)} + Rp ${fmt(v.laba)} − Rp ${fmt(v.prive)} = Rp ${fmt(ekuitasAkhir)}`, "Menentukan saldo modal akhir periode."),
+                                    mkStep("Uji Aset = Liabilitas + Ekuitas", "Alur: Bandingkan Total Aset dengan Liabilitas + Ekuitas Akhir.", `Rp ${fmt(v.aset)} vs Rp ${fmt(kanan)} (Selisih: Rp ${fmt(Math.abs(selisih))})`, selisih === 0 ? "Persamaan seimbang." : "Perlu penyesuaian.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Ekuitas Awal vs Ekuitas Akhir",
+                                    caption: "Membandingkan posisi ekuitas awal dan akhir.",
+                                    items: [
+                                        { label: "Ekuitas Awal", val: v.awal, color: "#38bdf8" },
+                                        { label: "Ekuitas Akhir", val: ekuitasAkhir, color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+            {
+                id: "xii_s1_b2", cls: "XII", sem: 1, badge: "KELAS XII • SEMESTER 1 • BAB 2",
+                title: "Siklus Akuntansi: Jurnal, HPP, Laba Rugi & Rasio Keuangan",
+                formulas: [
+                    {
+                        name: "1. Tabel Jurnal Umum & Neraca Saldo (Debit = Kredit)",
+                        math: "∑Debit = ∑Kredit   |   Saldo Normal: Aset & Beban (Debit) | Liabilitas, Ekuitas & Pendapatan (Kredit)",
+                        legend: "Mencatat transaksi ke dalam jurnal umum berbasis tabel Debit–Kredit dan menguji keseimbangan total Debit dengan total Kredit.",
+                        inputs: [
+                            { group: "Transaksi 1: Setoran Modal", id: "t1", label: "Kas / Modal Disetor (Rp)", val: 80000000 },
+                            { group: "Transaksi 2: Pembelian Perlengkapan", id: "t2", label: "Perlengkapan Tunai (Rp)", val: 6500000 },
+                            { group: "Transaksi 3: Pendapatan Jasa", id: "t3", label: "Pendapatan Jasa Diterima (Rp)", val: 24000000 },
+                            { group: "Transaksi 4: Beban Gaji & Listrik", id: "t4", label: "Beban Operasional Dibayar (Rp)", val: 9500000 }
+                        ],
+                        solve: (v) => {
+                            const totalDebit = v.t1 + v.t2 + v.t3 + v.t4;
+                            const totalKredit = v.t1 + v.t2 + v.t3 + v.t4;
+                            const saldoKas = v.t1 - v.t2 + v.t3 - v.t4;
+                            return {
+                                status: totalDebit === totalKredit ? "JURNAL SEIMBANG" : "TIDAK SEIMBANG",
+                                warn: totalDebit !== totalKredit,
+                                main: `∑Debit = Rp ${fmt(totalDebit)}  |  ∑Kredit = Rp ${fmt(totalKredit)}`,
+                                note: `Saldo akhir Kas dari transaksi simulasi sebesar Rp ${fmt(saldoKas)}.`,
+                                kpis: [
+                                    { label: "Total Debit", val: `Rp ${fmt(totalDebit)}` },
+                                    { label: "Total Kredit", val: `Rp ${fmt(totalKredit)}` },
+                                    { label: "Saldo Kas Akhir", val: `Rp ${fmt(saldoKas)}` }
+                                ],
+                                tableTitle: "Tabel Jurnal Umum (Debit & Kredit)",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "No" }, { label: "Akun / Keterangan" }, { label: "Debit (Rp)", num: true }, { label: "Kredit (Rp)", num: true }],
+                                    [
+                                        { cells: ["1", "Kas", `Rp ${fmt(v.t1)}`, "-"] },
+                                        { cells: ["", "    Modal Usaha", "-", `Rp ${fmt(v.t1)}`] },
+                                        { cells: ["2", "Perlengkapan", `Rp ${fmt(v.t2)}`, "-"] },
+                                        { cells: ["", "    Kas", "-", `Rp ${fmt(v.t2)}`] },
+                                        { cells: ["3", "Kas", `Rp ${fmt(v.t3)}`, "-"] },
+                                        { cells: ["", "    Pendapatan Jasa", "-", `Rp ${fmt(v.t3)}`] },
+                                        { cells: ["4", "Beban Gaji & Listrik", `Rp ${fmt(v.t4)}`, "-"] },
+                                        { cells: ["", "    Kas", "-", `Rp ${fmt(v.t4)}`] },
+                                        { type: "total", cells: ["", "TOTAL JURNAL UMUM", `Rp ${fmt(totalDebit)}`, `Rp ${fmt(totalKredit)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Catat Setiap Transaksi Secara Berpasangan", "Alur: Setiap transaksi memiliki akun Debit dan Kredit dengan nominal sama.", `Total Debit = Rp ${fmt(totalDebit)}   |   Total Kredit = Rp ${fmt(totalKredit)}`, "Prinsip double-entry bookkeeping."),
+                                    mkStep("Hitung Saldo Kas", "Alur: Kas Awal + Pendapatan − Pembelian Tunai − Beban.", `Kas Akhir = Rp ${fmt(v.t1)} − Rp ${fmt(v.t2)} + Rp ${fmt(v.t3)} − Rp ${fmt(v.t4)} = Rp ${fmt(saldoKas)}`, "Saldo kas siap diposting ke buku besar.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Ringkasan Debit, Kredit & Saldo Kas",
+                                    caption: "Membandingkan total debit, total kredit, dan saldo kas akhir.",
+                                    items: [
+                                        { label: "Total Debit", val: totalDebit, color: "#38bdf8" },
+                                        { label: "Total Kredit", val: totalKredit, color: "#818cf8" },
+                                        { label: "Saldo Kas", val: Math.max(0, saldoKas), color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    },
+                    {
+                        name: "2. HPP, Laporan Laba Rugi & Rasio Keuangan",
+                        math: "HPP = Pers. Awal + Pembelian Bersih − Pers. Akhir   |   Laba Bersih = Penjualan Bersih − HPP − Beban",
+                        legend: "Menyusun tabel perhitungan HPP dan Laporan Laba Rugi bertingkat serta menghitung Current Ratio dan Net Profit Margin (NPM).",
+                        inputs: [
+                            { group: "Komponen HPP", id: "pAwal", label: "Persediaan Awal (Rp)", val: 40000000 },
+                            { group: "Komponen HPP", id: "beli", label: "Pembelian Bersih (Rp)", val: 108000000 },
+                            { group: "Komponen HPP", id: "pAkhir", label: "Persediaan Akhir (Rp)", val: 32000000 },
+                            { group: "Laba Rugi", id: "jual", label: "Penjualan Bersih (Rp)", val: 195000000 },
+                            { group: "Laba Rugi", id: "beban", label: "Beban Usaha (Rp)", val: 41000000 },
+                            { group: "Likuiditas", id: "al", label: "Aset Lancar (Rp)", val: 90000000 },
+                            { group: "Likuiditas", id: "ul", label: "Utang Lancar (Rp)", val: 45000000 }
+                        ],
+                        solve: (v) => {
+                            const btud = v.pAwal + v.beli;
+                            const hpp = btud - v.pAkhir;
+                            const labaKotor = v.jual - hpp;
+                            const labaBersih = labaKotor - v.beban;
+                            const cr = v.ul > 0 ? v.al / v.ul : 0;
+                            const npm = v.jual > 0 ? (labaBersih / v.jual) * 100 : 0;
+                            return {
+                                status: labaBersih >= 0 ? "LABA BERSIH" : "RUGI BERSIH",
+                                warn: labaBersih < 0,
+                                main: `HPP = Rp ${fmt(hpp)}  |  Laba Bersih = Rp ${fmt(labaBersih)}`,
+                                note: `Laba kotor = Rp ${fmt(labaKotor)}, Current Ratio = ${cr.toFixed(2)}x, dan NPM = ${npm.toFixed(2)}%.`,
+                                kpis: [
+                                    { label: "HPP", val: `Rp ${fmt(hpp)}` },
+                                    { label: "Laba Kotor", val: `Rp ${fmt(labaKotor)}` },
+                                    { label: "Laba Bersih", val: `Rp ${fmt(labaBersih)}` },
+                                    { label: "CR / NPM", val: `${cr.toFixed(2)}x / ${npm.toFixed(2)}%` }
+                                ],
+                                tableTitle: "Tabel Perhitungan HPP & Laporan Laba Rugi",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Pos Laporan" }, { label: "Jumlah (Rp)", num: true }],
+                                    [
+                                        { type: "section", cells: ["PERHITUNGAN HPP", ""] },
+                                        { cells: ["Persediaan Awal", `Rp ${fmt(v.pAwal)}`] },
+                                        { cells: ["Pembelian Bersih", `Rp ${fmt(v.beli)}`] },
+                                        { cells: ["Barang Tersedia Dijual (BTUD)", `Rp ${fmt(btud)}`] },
+                                        { cells: ["Dikurangi: Persediaan Akhir", `-Rp ${fmt(v.pAkhir)}`] },
+                                        { cells: ["Harga Pokok Penjualan (HPP)", `Rp ${fmt(hpp)}`] },
+                                        { type: "section", cells: ["LABA RUGI", ""] },
+                                        { cells: ["Penjualan Bersih", `Rp ${fmt(v.jual)}`] },
+                                        { cells: ["Laba Kotor (Penjualan − HPP)", `Rp ${fmt(labaKotor)}`] },
+                                        { cells: ["Dikurangi: Beban Usaha", `-Rp ${fmt(v.beban)}`] },
+                                        { type: "total", cells: ["Laba / Rugi Bersih", `Rp ${fmt(labaBersih)}`] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung HPP", "Alur: Persediaan Awal + Pembelian Bersih − Persediaan Akhir.", `HPP = Rp ${fmt(btud)} − Rp ${fmt(v.pAkhir)} = Rp ${fmt(hpp)}`, "Biaya barang yang terjual."),
+                                    mkStep("Hitung Laba Kotor & Laba Bersih", "Alur: Laba Kotor = Penjualan − HPP; Laba Bersih = Laba Kotor − Beban.", `Laba Kotor = Rp ${fmt(labaKotor)}   ⇒   Laba Bersih = Rp ${fmt(labaBersih)}`, "Hasil akhir kinerja usaha.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Laba Rugi: Penjualan, HPP, Beban & Laba Bersih",
+                                    caption: "Membandingkan pos utama laporan laba rugi.",
+                                    items: [
+                                        { label: "Penjualan", val: v.jual, color: "#38bdf8" },
+                                        { label: "HPP", val: hpp, color: "#fbbf24" },
+                                        { label: "Beban", val: v.beban, color: "#fb7185" },
+                                        { label: "Laba Bersih", val: Math.max(0, labaBersih), color: "#2dd4bf" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+
+            /* ================= KELAS XII - SEMESTER 2 ================= */
+            {
+                id: "xii_s2_b3", cls: "XII", sem: 2, badge: "KELAS XII • SEMESTER 2 • BAB 3",
+                title: "Perdagangan Internasional, Kurs & Neraca Pembayaran",
+                formulas: [
+                    {
+                        name: "1. Konversi Kurs Valuta Asing & Saldo Neraca Pembayaran (BoP)",
+                        math: "Rupiah (Beli Valas) = Valas × Kurs Jual   |   Rupiah (Jual Valas) = Valas × Kurs Beli   |   BoP = (X − M) + Neraca Modal",
+                        legend: "Menghitung konversi Rupiah memakai kurs jual/beli serta saldo Neraca Pembayaran (Balance of Payments).",
+                        inputs: [
+                            { group: "Valuta Asing", id: "valas", label: "Nominal Valas", val: 500 },
+                            { group: "Valuta Asing", id: "jual", label: "Kurs Jual (Rp)", val: 16150 },
+                            { group: "Valuta Asing", id: "beli", label: "Kurs Beli (Rp)", val: 15950 },
+                            { group: "Neraca Pembayaran", id: "eks", label: "Ekspor (X)", val: 260 },
+                            { group: "Neraca Pembayaran", id: "imp", label: "Impor (M)", val: 225 },
+                            { group: "Neraca Pembayaran", id: "modal", label: "Neraca Modal & Finansial", val: 15 }
+                        ],
+                        solve: (v) => {
+                            const bayar = v.valas * v.jual;
+                            const terima = v.valas * v.beli;
+                            const dagang = v.eks - v.imp;
+                            const bop = dagang + v.modal;
+                            return {
+                                status: bop >= 0 ? "BoP SURPLUS" : "BoP DEFISIT",
+                                warn: bop < 0,
+                                main: `Beli: Rp ${fmt(bayar)}  |  Jual: Rp ${fmt(terima)}  |  BoP: ${fmt(bop)}`,
+                                note: `Neraca perdagangan = ${fmt(dagang)}, saldo BoP = ${fmt(bop)}.`,
+                                kpis: [
+                                    { label: "Beli Valas (Kurs Jual)", val: `Rp ${fmt(bayar)}` },
+                                    { label: "Jual Valas (Kurs Beli)", val: `Rp ${fmt(terima)}` },
+                                    { label: "Neraca Dagang", val: fmt(dagang) },
+                                    { label: "Saldo BoP", val: fmt(bop) }
+                                ],
+                                tableTitle: "Tabel Ringkasan Kurs & Neraca Pembayaran",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Pos Transaksi / Neraca" }, { label: "Nilai" }],
+                                    [
+                                        { cells: [`Beli ${fmt(v.valas)} Valas (× Kurs Jual Rp ${fmt(v.jual)})`, `Rp ${fmt(bayar)}`] },
+                                        { cells: [`Jual ${fmt(v.valas)} Valas (× Kurs Beli Rp ${fmt(v.beli)})`, `Rp ${fmt(terima)}`] },
+                                        { cells: ["Neraca Perdagangan (Ekspor − Impor)", fmt(dagang)] },
+                                        { type: "total", cells: ["Saldo BoP (Neraca Dagang + Modal)", fmt(bop)] }
+                                    ]
+                                ),
+                                steps: [
+                                    mkStep("Hitung Konversi Kurs Jual & Beli", "Alur: Kalikan nominal valas dengan kurs jual (beli) dan kurs beli (jual).", `Beli = Rp ${fmt(bayar)}   |   Jual = Rp ${fmt(terima)}`, "Mengikuti sudut pandang transaksi bank."),
+                                    mkStep("Hitung Neraca Dagang & BoP", "Alur: Dagang = X − M; BoP = Dagang + Neraca Modal.", `Dagang = ${fmt(dagang)}   ⇒   BoP = ${fmt(bop)}`, "Saldo positif menunjukkan surplus BoP.")
+                                ],
+                                chart: {
+                                    type: "bar",
+                                    title: "Grafik Ekspor, Impor & Saldo BoP",
+                                    caption: "Membandingkan nilai ekspor, impor, dan saldo BoP.",
+                                    items: [
+                                        { label: "Ekspor", val: v.eks, color: "#2dd4bf" },
+                                        { label: "Impor", val: v.imp, color: "#fb7185" },
+                                        { label: "Saldo BoP", val: Math.max(0, bop), color: "#38bdf8" }
+                                    ]
+                                }
+                            };
+                        }
+                    }
+                ]
+            },
+            {
+                id: "xii_s2_b4", cls: "XII", sem: 2, badge: "KELAS XII • SEMESTER 2 • BAB 4",
+                title: "Kerja Sama Ekonomi & Manajemen Badan Usaha (BEP & Laba)",
+                formulas: [
+                    {
+                        name: "1. Break-Even Point (BEP Unit & Rp) + Tabel Volume",
+                        math: "BEP (Unit) = FC ÷ (P − VC)   |   BEP (Rp) = BEP (Unit) × P   |   Laba = (P × Q) − (FC + VC × Q)",
+                        legend: "Menentukan titik impas saat pendapatan total (TR) sama dengan biaya total (TC), serta tabel simulasi laba/rugi pada berbagai volume Q.",
+                        inputs: [
+                            { group: "Biaya & Harga", id: "fc", label: "Biaya Tetap / FC (Rp)", val: 15000000 },
+                            { group: "Biaya & Harga", id: "p", label: "Harga Jual / Unit (P) (Rp)", val: 50000 },
+                            { group: "Biaya & Harga", id: "vc", label: "Biaya Variabel / Unit (VC) (Rp)", val: 30000 },
+                            { group: "Volume Simulasi", id: "q", label: "Volume Penjualan Uji (Q Unit)", val: 1000 }
+                        ],
+                        solve: (v) => {
+                            const margin = v.p - v.vc;
+                            if (margin <= 0) return { status: "MARGIN ≤ 0", warn: true, main: "Tidak Valid", note: "P harus lebih besar daripada VC.", kpis: [], tableTitle: "", tableHtml: "", steps: [], chart: null };
+                            const unit = v.fc / margin;
+                            const rp = unit * v.p;
+                            const trUji = v.p * v.q;
+                            const tcUji = v.fc + v.vc * v.q;
+                            const labaUji = trUji - tcUji;
+
+                            const qList = [Math.max(0, Math.round(unit * 0.5)), Math.round(unit), v.q].sort((a, b) => a - b);
+                            const rows = qList.map(qVal => {
+                                const tr = v.p * qVal;
+                                const tc = v.fc + v.vc * qVal;
+                                const lr = tr - tc;
+                                return {
+                                    type: Math.abs(qVal - Math.round(unit)) <= 1 ? "total" : "",
+                                    cells: [`${fmt(qVal)} unit`, `Rp ${fmt(tr)}`, `Rp ${fmt(tc)}`, `${lr >= 0 ? "+" : "-"}Rp ${fmt(Math.abs(lr))}`]
+                                };
+                            });
+
+                            return {
+                                status: labaUji >= 0 ? "PROFITABLE" : "RUGI PADA Q",
+                                warn: labaUji < 0,
+                                main: `BEP = ${fmt(Math.ceil(unit))} Unit (Rp ${fmt(rp)})  |  Laba @Q = ${labaUji >= 0 ? "+" : "-"}Rp ${fmt(Math.abs(labaUji))}`,
+                                note: `Margin kontribusi per unit = Rp ${fmt(margin)}. Pada penjualan ${fmt(v.q)} unit, laba/rugi = ${labaUji >= 0 ? "+" : "-"}Rp ${fmt(Math.abs(labaUji))}.`,
+                                kpis: [
+                                    { label: "Margin / Unit", val: `Rp ${fmt(margin)}` },
+                                    { label: "BEP (Unit)", val: `${fmt(Math.ceil(unit))} u` },
+                                    { label: "BEP (Rupiah)", val: `Rp ${fmt(rp)}` },
+                                    { label: `Laba @ ${fmt(v.q)}u`, val: `${labaUji >= 0 ? "+" : "-"}Rp ${fmt(Math.abs(labaUji))}` }
+                                ],
+                                tableTitle: "Tabel Simulasi Pendapatan (TR), Biaya (TC) & Laba/Rugi",
+                                tableHtml: buildHtmlTable(
+                                    [{ label: "Volume (Q)" }, { label: "Pendapatan (TR)", num: true }, { label: "Biaya Total (TC)", num: true }, { label: "Laba / Rugi", num: true }],
+                                    rows
+                                ),
+                                steps: [
+                                    mkStep("Hitung Margin Kontribusi & BEP Unit", "Alur: Margin = P − VC; BEP Unit = FC ÷ Margin.", `Margin = Rp ${fmt(margin)}   ⇒   BEP Unit = ${unit.toFixed(2)} unit`, "Jumlah unit minimal menutup biaya tetap."),
+                                    mkStep("Hitung BEP Rupiah & Laba pada Q", "Alur: BEP Rp = BEP Unit × P; Laba = TR − TC.", `BEP Rp = Rp ${fmt(rp)}   |   Laba @${fmt(v.q)}u = Rp ${fmt(labaUji)}`, "Menunjukkan titik impas dan proyeksi laba.")
+                                ],
+                                chart: {
+                                    type: "bep",
+                                    title: "Kurva Break-Even Point (TR vs TC)",
+                                    caption: "Perpotongan garis TR dan TC menandai titik impas (BEP).",
+                                    fc: v.fc, p: v.p, vc: v.vc, bepUnit: unit, bepRp: rp
+                                }
+                            };
+                        }
+                    }
+                ]
+            }
+        ];
+
+        let curClass = "X", curSem = 1, activeChapter = null, activeFIdx = 0;
+        let lastEquilibrium = null, lastChart = null;
+
+        function setClass(c) {
+            curClass = c;
+            document.getElementById("searchInput").value = "";
+            ["X", "XI", "XII"].forEach(k => {
+                document.getElementById("btnCls" + k).className = k === c ? "seg-btn active-1" : "seg-btn";
+            });
+            renderChapterList();
+        }
+
+        function setSem(s) {
+            curSem = s;
+            document.getElementById("searchInput").value = "";
+            [1, 2].forEach(n => {
+                document.getElementById("btnSem" + n).className = n === s ? "seg-btn active-2" : "seg-btn";
+            });
+            renderChapterList();
+        }
+
+        function handleSearch() {
+            const q = document.getElementById("searchInput").value.trim().toLowerCase();
+            if (!q) { renderChapterList(); return; }
+            const matches = curriculumData.filter(ch =>
+                ch.title.toLowerCase().includes(q) ||
+                ch.formulas.some(f => f.name.toLowerCase().includes(q) || f.math.toLowerCase().includes(q) || f.legend.toLowerCase().includes(q))
+            );
+            renderChapterButtons(matches);
+        }
+
+        function renderChapterList() {
+            const list = curriculumData.filter(c => c.cls === curClass && c.sem === curSem);
+            renderChapterButtons(list);
+        }
+
+        function renderChapterButtons(list) {
+            const grid = document.getElementById("chapGrid");
+            if (!list.length) {
+                grid.innerHTML = `<div class="panel" style="color:var(--text-muted);font-size:13px;">Rumus atau materi tidak ditemukan. Coba kata kunci lain.</div>`;
+                return;
+            }
+            grid.innerHTML = list.map((ch, i) => `
+                <button class="chapter-card ${activeChapter && activeChapter.id === ch.id ? 'active' : ''}" style="animation-delay:${i * 0.03}s" onclick="selectChapter('${ch.id}')">
+                    <span class="chapter-kicker">${ch.badge}</span>
+                    <span class="chapter-title">${ch.title}</span>
+                    <span class="chapter-meta">${ch.formulas.length} Mode • Tabel • Kamus Simbol • Kurva</span>
+                </button>
+            `).join("");
+
+            if (!activeChapter || !list.some(x => x.id === activeChapter.id)) {
+                selectChapter(list[0].id);
+            }
+        }
+
+        function selectChapter(id) {
+            const ch = curriculumData.find(x => x.id === id);
+            if (!ch) return;
+            activeChapter = ch;
+            activeFIdx = 0;
+            lastEquilibrium = null;
+
+            document.querySelectorAll(".chapter-card").forEach(el => el.classList.remove("active"));
+            const btns = Array.from(document.querySelectorAll(".chapter-card"));
+            const matchBtn = btns.find(b => b.getAttribute("onclick") === `selectChapter('${id}')`);
+            if (matchBtn) matchBtn.classList.add("active");
+
+            document.getElementById("curBadge").textContent = ch.badge;
+            document.getElementById("curTitle").textContent = ch.title;
+
+            document.getElementById("formulaTabs").innerHTML = ch.formulas.map((f, idx) => `
+                <button class="f-tab ${idx === 0 ? 'active' : ''}" id="ftab_${idx}" onclick="selectFormula(${idx})">
+                    ${f.name}
+                </button>
+            `).join("");
+
+            selectFormula(0);
+        }
+
+        function selectFormula(idx) {
+            activeFIdx = idx;
+            lastEquilibrium = null;
+            activeChapter.formulas.forEach((_, i) => {
+                const el = document.getElementById("ftab_" + i);
+                if (el) el.className = i === idx ? "f-tab active" : "f-tab";
+            });
+
+            const f = activeChapter.formulas[idx];
+            document.getElementById("fName").textContent = f.name;
+            document.getElementById("fMath").textContent = f.math;
+            document.getElementById("fLegend").textContent = f.legend;
+            renderSymbolsForFormula(f.math);
+
+            const groups = [];
+            f.inputs.forEach(inp => {
+                const gName = inp.group || "Parameter";
+                let gObj = groups.find(g => g.name === gName);
+                if (!gObj) { gObj = { name: gName, items: [] }; groups.push(gObj); }
+                gObj.items.push(inp);
+            });
+
+            document.getElementById("inputsContainer").innerHTML = groups.map(g => `
+                <div class="input-section-label">${g.name}</div>
+                <div class="inputs-grid">
+                    ${g.items.map(inp => `
+                        <div class="input-group">
+                            <label for="in_${inp.id}">${inp.label}</label>
+                            <input type="number" step="any" id="in_${inp.id}" value="${inp.val}" oninput="calculate()">
+                        </div>
+                    `).join("")}
+                </div>
+            `).join("");
+
+            calculate();
+        }
+
+        function resetDefaults() {
+            const f = activeChapter.formulas[activeFIdx];
+            lastEquilibrium = null;
+            f.inputs.forEach(inp => {
+                const el = document.getElementById("in_" + inp.id);
+                if (el) el.value = inp.val;
+            });
+            calculate();
+        }
+
+        function calculate() {
+            const f = activeChapter.formulas[activeFIdx];
+            const values = {};
+            f.inputs.forEach(inp => {
+                const el = document.getElementById("in_" + inp.id);
+                values[inp.id] = parseFloat(el ? el.value : 0) || 0;
+            });
+
+            const out = f.solve(values);
+            const badge = document.getElementById("statusBadge");
+            badge.textContent = out.status || "AKTIF";
+            badge.className = out.warn ? "status-badge warn" : "status-badge";
+
+            document.getElementById("resMain").textContent = out.main;
+            document.getElementById("resNote").textContent = out.note;
+
+            document.getElementById("kpiStrip").innerHTML = (out.kpis || []).map(k => `
+                <div class="kpi-card">
+                    <div class="kpi-label">${k.label}</div>
+                    <div class="kpi-val">${k.val}</div>
+                </div>
+            `).join("");
+
+            const tPanel = document.getElementById("tablePanel");
+            if (out.tableHtml) {
+                tPanel.classList.remove("hidden");
+                document.getElementById("tableHeading").textContent = out.tableTitle || "TABEL PENERAPAN";
+                document.getElementById("tableContent").innerHTML = out.tableHtml;
+            } else {
+                tPanel.classList.add("hidden");
+            }
+
+            document.getElementById("stepsList").innerHTML = (out.steps || []).map((st, i) => `
+                <div class="step-item" style="animation-delay:${i * 0.04}s">
+                    <div class="step-top">
+                        <span class="step-num">${String(i + 1).padStart(2, "0")}</span>
+                        <span class="step-heading">${st.title}</span>
+                    </div>
+                    <div class="step-flow">${st.flow}</div>
+                    <div class="step-formula-apply">${st.calc}</div>
+                    <div class="step-explain">${st.desc}</div>
+                </div>
+            `).join("");
+
+            lastChart = out.chart;
+            renderChart(out.chart);
+        }
+
+        function renderChart(chart) {
+            const canvas = document.getElementById("vizCanvas");
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width > 0) {
+                canvas.width = Math.round(rect.width);
+                canvas.height = Math.round(rect.height || 240);
+            }
+
+            const ctx = canvas.getContext("2d");
+            const legendEl = document.getElementById("vizLegend");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (!chart) {
+                document.getElementById("vizTitle").textContent = "VISUALISASI";
+                document.getElementById("vizCaption").textContent = "";
+                legendEl.innerHTML = "";
+                return;
+            }
+
+            document.getElementById("vizTitle").textContent = chart.title || "KURVA & VISUALISASI DINAMIS";
+            document.getElementById("vizCaption").textContent = chart.caption || "";
+
+            if (chart.type === "equilibrium") {
+                legendEl.innerHTML = `
+                    <span><i class="dot" style="background:#38bdf8;"></i>Permintaan (D)</span>
+                    <span><i class="dot" style="background:#2dd4bf;"></i>Penawaran (S)</span>
+                    <span><i class="dot" style="background:#fbbf24;"></i>Keseimbangan (E)</span>
+                `;
+
+                const padL = 56, padB = 36, padT = 26, padR = 30;
+                const w = canvas.width - padL - padR;
+                const h = canvas.height - padT - padB;
+
+                const qMax = Math.max(10, chart.a, chart.qe * 1.45, Math.max(0, chart.c) * 1.35, lastEquilibrium ? lastEquilibrium.qe * 1.45 : 0);
+                const pInterceptD = chart.b > 0 ? Math.max(5, chart.a / chart.b) : Math.max(10, chart.pe * 1.5);
+                const pMax = Math.max(10, pInterceptD * 1.15, chart.pe * 1.5, lastEquilibrium ? lastEquilibrium.pe * 1.5 : 0);
+
+                const toX = (q) => padL + Math.max(0, Math.min(1, q / qMax)) * w;
+                const toY = (p) => padT + h - Math.max(0, Math.min(1, p / pMax)) * h;
+
+                ctx.strokeStyle = "rgba(148,163,184,0.1)";
+                ctx.lineWidth = 1;
+                for (let g = 1; g <= 4; g++) {
+                    const gy = padT + (h / 4) * g;
+                    ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(padL + w, gy); ctx.stroke();
+                    const gx = padL + (w / 4) * g;
+                    ctx.beginPath(); ctx.moveTo(gx, padT); ctx.lineTo(gx, padT + h); ctx.stroke();
+                }
+
+                ctx.strokeStyle = "rgba(148,163,184,0.5)";
+                ctx.lineWidth = 1.6;
+                ctx.beginPath();
+                ctx.moveTo(padL, padT);
+                ctx.lineTo(padL, padT + h);
+                ctx.lineTo(padL + w, padT + h);
+                ctx.stroke();
+
+                ctx.fillStyle = "#e2e8f0";
+                ctx.font = "bold 11.5px sans-serif";
+                ctx.fillText("P", padL - 20, padT + 10);
+                ctx.fillText("Q", padL + w + 10, padT + h + 4);
+
+                if (lastEquilibrium && isFinite(lastEquilibrium.qe) && isFinite(lastEquilibrium.pe)) {
+                    const gx = toX(lastEquilibrium.qe);
+                    const gy = toY(lastEquilibrium.pe);
+                    ctx.strokeStyle = "rgba(148,163,184,0.45)";
+                    ctx.setLineDash([3, 3]);
+                    ctx.beginPath();
+                    ctx.arc(gx, gy, 5, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                    ctx.fillStyle = "#94a3b8";
+                    ctx.font = "10.5px sans-serif";
+                    ctx.fillText(`E0 (${fmt(lastEquilibrium.qe)} ; ${fmt(lastEquilibrium.pe)})`, gx + 8, gy + 13);
+                }
+
+                if (chart.b > 0) {
+                    const x1 = toX(0), y1 = toY(Math.max(0, chart.a / chart.b));
+                    const x2 = toX(Math.max(0, chart.a)), y2 = toY(0);
+                    ctx.strokeStyle = "#38bdf8";
+                    ctx.lineWidth = 2.8;
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#38bdf8";
+                    ctx.font = "bold 11px sans-serif";
+                    ctx.fillText(`D (a=${fmt(chart.a)}, b=${fmt(chart.b)})`, Math.min(x1 + 8, canvas.width - 145), Math.max(y1 - 6, 14));
+                }
+
+                if (chart.d > 0) {
+                    const qStart = Math.max(0, chart.c);
+                    const pStart = chart.c < 0 ? Math.abs(chart.c) / chart.d : 0;
+                    const qEnd = qMax;
+                    const pEnd = (qEnd - chart.c) / chart.d;
+
+                    const x1 = toX(qStart), y1 = toY(pStart);
+                    const x2 = toX(qEnd), y2 = toY(pEnd);
+
+                    ctx.strokeStyle = "#2dd4bf";
+                    ctx.lineWidth = 2.8;
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#2dd4bf";
+                    ctx.font = "bold 11px sans-serif";
+                    ctx.fillText(`S (c=${fmt(chart.c)}, d=${fmt(chart.d)})`, Math.min(x2 - 135, canvas.width - 145), Math.max(y2 - 8, 14));
+                }
+
+                if (isFinite(chart.qe) && isFinite(chart.pe) && chart.qe >= 0 && chart.pe >= 0) {
+                    const ex = toX(chart.qe);
+                    const ey = toY(chart.pe);
+
+                    ctx.setLineDash([4, 4]);
+                    ctx.strokeStyle = "#fbbf24";
+                    ctx.lineWidth = 1.4;
+                    ctx.beginPath();
+                    ctx.moveTo(padL, ey); ctx.lineTo(ex, ey); ctx.lineTo(ex, padT + h);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+
+                    ctx.fillStyle = "#fbbf24";
+                    ctx.beginPath();
+                    ctx.arc(ex, ey, 6, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.font = "bold 11px sans-serif";
+                    const lx = ex + 10 > canvas.width - 125 ? ex - 120 : ex + 10;
+                    const ly = ey - 8 < 14 ? ey + 16 : ey - 8;
+                    ctx.fillText(`E (${fmt(chart.qe)} ; ${fmt(chart.pe)})`, lx, ly);
+
+                    lastEquilibrium = { qe: chart.qe, pe: chart.pe };
+                }
+                return;
+            }
+
+            if (chart.type === "bep") {
+                legendEl.innerHTML = `
+                    <span><i class="dot" style="background:#2dd4bf;"></i>Pendapatan (TR)</span>
+                    <span><i class="dot" style="background:#fb7185;"></i>Biaya Total (TC)</span>
+                    <span><i class="dot" style="background:#fbbf24;"></i>Titik Impas (BEP)</span>
+                `;
+
+                const padL = 60, padB = 36, padT = 26, padR = 28;
+                const w = canvas.width - padL - padR;
+                const h = canvas.height - padT - padB;
+
+                const maxQ = Math.max(10, chart.bepUnit * 2);
+                const trAtMax = chart.p * maxQ;
+                const tcAtMax = chart.fc + chart.vc * maxQ;
+                const maxValY = Math.max(100, trAtMax, tcAtMax, chart.bepRp * 1.2);
+
+                const xOfQ = (q) => padL + (q / maxQ) * w;
+                const yOfVal = (val) => padT + h - Math.max(0, Math.min(1, val / maxValY)) * h;
+
+                ctx.strokeStyle = "rgba(148,163,184,0.1)";
+                ctx.lineWidth = 1;
+                for (let g = 1; g <= 4; g++) {
+                    const gy = padT + (h / 4) * g;
+                    ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(padL + w, gy); ctx.stroke();
+                }
+
+                ctx.strokeStyle = "rgba(148,163,184,0.5)";
+                ctx.lineWidth = 1.6;
+                ctx.beginPath();
+                ctx.moveTo(padL, padT);
+                ctx.lineTo(padL, padT + h);
+                ctx.lineTo(padL + w, padT + h);
+                ctx.stroke();
+
+                ctx.fillStyle = "#e2e8f0";
+                ctx.font = "bold 11.5px sans-serif";
+                ctx.fillText("Rp", padL - 24, padT + 10);
+                ctx.fillText("Q", padL + w + 10, padT + h + 4);
+
+                ctx.strokeStyle = "#2dd4bf";
+                ctx.lineWidth = 2.6;
+                ctx.beginPath();
+                ctx.moveTo(xOfQ(0), yOfVal(0));
+                ctx.lineTo(xOfQ(maxQ), yOfVal(trAtMax));
+                ctx.stroke();
+                ctx.fillStyle = "#2dd4bf";
+                ctx.fillText("TR", xOfQ(maxQ) - 28, yOfVal(trAtMax) - 8);
+
+                ctx.strokeStyle = "#fb7185";
+                ctx.beginPath();
+                ctx.moveTo(xOfQ(0), yOfVal(chart.fc));
+                ctx.lineTo(xOfQ(maxQ), yOfVal(tcAtMax));
+                ctx.stroke();
+                ctx.fillStyle = "#fb7185";
+                ctx.fillText("TC", xOfQ(maxQ) - 28, yOfVal(tcAtMax) + 14);
+
+                const bx = xOfQ(chart.bepUnit);
+                const by = yOfVal(chart.bepRp);
+                ctx.fillStyle = "#fbbf24";
+                ctx.beginPath();
+                ctx.arc(bx, by, 6, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillText(`BEP (${fmt(Math.ceil(chart.bepUnit))} u)`, Math.min(bx + 8, canvas.width - 100), Math.max(by - 8, 14));
+                return;
+            }
+
+            const items = chart.items || [];
+            if (!items.length) return;
+            legendEl.innerHTML = items.map(it => `<span><i class="dot" style="background:${it.color || "#38bdf8"};"></i>${it.label}</span>`).join("");
+
+            const maxVal = Math.max(1, ...items.map(it => Math.abs(it.val)));
+            const barH = 24, gap = 14, startY = 20, labelW = 150;
+            const maxBarW = Math.max(60, canvas.width - labelW - 140);
+
+            items.forEach((it, idx) => {
+                const y = startY + idx * (barH + gap);
+                if (y + barH > canvas.height - 8) return;
+                const bw = Math.max(6, (Math.abs(it.val) / maxVal) * maxBarW);
+
+                ctx.fillStyle = "#cbd5e1";
+                ctx.font = "bold 11.5px sans-serif";
+                ctx.fillText(it.label, 14, y + 16);
+
+                ctx.fillStyle = it.color || "#38bdf8";
+                ctx.beginPath();
+                ctx.roundRect ? ctx.roundRect(labelW, y, bw, barH, 6) : ctx.rect(labelW, y, bw, barH);
+                ctx.fill();
+
+                ctx.fillStyle = "#f8fafc";
+                ctx.fillText(fmt(it.val), labelW + bw + 10, y + 16);
+            });
+        }
+
+        /* ===================== MODE CORET PID (BISA KELUAR / UNDO / HAPUS) ===================== */
+        let drawActive = false, drawing = false, penColor = "#fbbf24";
+        let pidStrokes = [], currentStroke = null;
+
+        function enterPID() {
+            drawActive = true;
+            const c = document.getElementById("pidCanvas");
+            const bar = document.getElementById("pidBar");
+            c.classList.remove("hidden");
+            bar.classList.remove("hidden");
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+            redrawPIDStrokes();
+
+            const pos = (e) => ({
+                x: e.touches && e.touches.length ? e.touches[0].clientX : e.clientX,
+                y: e.touches && e.touches.length ? e.touches[0].clientY : e.clientY
+            });
+
+            c.onmousedown = c.ontouchstart = (e) => {
+                drawing = true;
+                const p = pos(e);
+                currentStroke = { color: penColor, width: 4, points: [p] };
+                pidStrokes.push(currentStroke);
+            };
+            c.onmousemove = c.ontouchmove = (e) => {
+                if (!drawing || !currentStroke) return;
+                if (e.cancelable) e.preventDefault();
+                currentStroke.points.push(pos(e));
+                redrawPIDStrokes();
+            };
+            c.onmouseup = c.ontouchend = c.onmouseleave = () => {
+                drawing = false;
+                currentStroke = null;
+            };
+        }
+
+        function exitPID() {
+            drawActive = false;
+            drawing = false;
+            currentStroke = null;
+            document.getElementById("pidCanvas").classList.add("hidden");
+            document.getElementById("pidBar").classList.add("hidden");
+        }
+
+        function setPenColor(col, btnEl) {
+            penColor = col;
+            document.querySelectorAll("#pidBar .swatch").forEach(s => s.classList.remove("active"));
+            if (btnEl) btnEl.classList.add("active");
+        }
+
+        function undoStroke() {
+            pidStrokes.pop();
+            redrawPIDStrokes();
+        }
+
+        function clearPIDStrokes() {
+            pidStrokes = [];
+            redrawPIDStrokes();
+        }
+
+        function redrawPIDStrokes() {
+            const c = document.getElementById("pidCanvas");
+            const ctx = c.getContext("2d");
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+
+            pidStrokes.forEach(st => {
+                if (!st.points || !st.points.length) return;
+                ctx.strokeStyle = st.color;
+                ctx.lineWidth = st.width;
+                ctx.beginPath();
+                ctx.moveTo(st.points[0].x, st.points[0].y);
+                for (let i = 1; i < st.points.length; i++) {
+                    ctx.lineTo(st.points[i].x, st.points[i].y);
+                }
+                if (st.points.length === 1) {
+                    ctx.lineTo(st.points[0].x + 0.1, st.points[0].y + 0.1);
+                }
+                ctx.stroke();
+            });
+        }
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && drawActive) exitPID();
+        });
+
+        window.addEventListener("resize", () => {
+            if (drawActive) {
+                const c = document.getElementById("pidCanvas");
+                c.width = window.innerWidth;
+                c.height = window.innerHeight;
+                redrawPIDStrokes();
+            }
+            if (lastChart) renderChart(lastChart);
+        });
+
+        function toggleFull() {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+            else document.exitFullscreen();
+        }
+
+        function openQR() {
+            document.getElementById("qrModal").classList.remove("hidden");
+            document.getElementById("qrUrlBox").textContent = window.location.href;
+            document.getElementById("copyFeedback").textContent = "";
+        }
+        function closeQR() { document.getElementById("qrModal").classList.add("hidden"); }
+        function copyPageUrl() {
+            navigator.clipboard.writeText(window.location.href);
+            document.getElementById("copyFeedback").textContent = "Tautan halaman tersalin!";
+        }
+
+        renderChapterList();
+    </script>
+</body>
+</html>
